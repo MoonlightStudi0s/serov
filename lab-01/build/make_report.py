@@ -316,6 +316,7 @@ def build_pdf(path, counts):
 
     SIZE = PAGE['font_size']
     LEAD = PAGE['leading']
+    TOC_NUM_RESERVE = 1.2 * cm   # место под отточие и номер страницы в содержании
     IND = PAGE['indent'] * cm
     BLANK = LEAD
 
@@ -414,11 +415,14 @@ def build_pdf(path, counts):
         elif kind == 'toc':
             toc = TableOfContents()
             toc.dotsMinLevel = 0
+            # rightIndent резервирует место под отточие и номер страницы: иначе у длинной
+            # строки номера, занимающей всю полосу набора, номер уезжает за поле.
             toc.levelStyles = [
                 ParagraphStyle('TOC1', fontName='Tinos', fontSize=SIZE, leading=LEAD,
-                               firstLineIndent=0),
+                               firstLineIndent=0, rightIndent=TOC_NUM_RESERVE),
                 ParagraphStyle('TOC2', fontName='Tinos', fontSize=SIZE, leading=LEAD,
-                               leftIndent=0.5 * cm, firstLineIndent=0),
+                               leftIndent=0.5 * cm, firstLineIndent=0,
+                               rightIndent=TOC_NUM_RESERVE),
             ]
             story.append(toc)
         elif kind == 'fig':
