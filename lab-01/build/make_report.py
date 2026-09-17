@@ -109,6 +109,17 @@ def format_text(text, counts):
 FIG_REF_RE = re.compile(r'([Рр]исунок)\s+(\d+)')
 
 
+def heading_anchors():
+    """Текст заголовка -> имя закладки (цели ссылок из содержания)."""
+    anchors = {}
+    idx = 0
+    for b in content.SECTIONS:
+        if b[0] in ('h1', 'h2', 'h1c'):
+            anchors[b[1]] = 'hd%d' % idx
+            idx += 1
+    return anchors
+
+
 def iter_fig_refs(text):
     """Разбивает текст на части: ('t', строка) и ('ref', фрагмент, номер_рисунка)."""
     pos = 0
@@ -178,11 +189,7 @@ def build_docx(page_map, path, counts):
         paragraph._p.insert(0, start)
         paragraph._p.append(end)
 
-    def add_internal_link(paragraph, anchor, text):
-        """Внутренняя гиперссылка на закладку (вид — как у обычного текста)."""
-        hl = OxmlElement('w:hyperlink')
-        hl.set(qn('w:anchor'), anchor)
-        hl.set(qn('w:history'), '1')
+    def _link_run(hl, text=None, tab=False):
         r = OxmlElement('w:r')
         rpr = OxmlElement('w:rPr')
         rfonts = OxmlElement('w:rFonts')
@@ -192,12 +199,32 @@ def build_docx(page_map, path, counts):
         sz.set(qn('w:val'), str(PAGE['font_size'] * 2))
         rpr.append(rfonts)
         rpr.append(sz)
-        t = OxmlElement('w:t')
-        t.set(qn('xml:space'), 'preserve')
-        t.text = text
         r.append(rpr)
-        r.append(t)
+        if tab:
+            r.append(OxmlElement('w:tab'))
+        elif text is not None:
+            t = OxmlElement('w:t')
+            t.set(qn('xml:space'), 'preserve')
+            t.text = text
+            r.append(t)
         hl.append(r)
+
+    def add_internal_link(paragraph, anchor, text):
+        """Внутренняя гиперссылка на закладку (вид — как у обычного текста)."""
+        hl = OxmlElement('w:hyperlink')
+        hl.set(qn('w:anchor'), anchor)
+        hl.set(qn('w:history'), '1')
+        _link_run(hl, text=text)
+        paragraph._p.append(hl)
+
+    def add_toc_link(paragraph, anchor, text, page):
+        """Строка содержания целиком — гиперссылка на соответствующий раздел."""
+        hl = OxmlElement('w:hyperlink')
+        hl.set(qn('w:anchor'), anchor)
+        hl.set(qn('w:history'), '1')
+        _link_run(hl, text=text)
+        _link_run(hl, tab=True)
+        _link_run(hl, text=str(page))
         paragraph._p.append(hl)
 
     # --- заголовки разделов (уровень 1) и подразделов (уровень 2, разреженный на 3 пт)
@@ -329,18 +356,23 @@ def build_docx(page_map, path, counts):
             row.cells[1].width = Cm(10.5)
         add_empty()
 
+    anchors = heading_anchors()
+
     for block in content.SECTIONS:
         kind = block[0]
         if kind == 'h1':
-            doc.add_paragraph(block[1], style='Heading 1')
+            p = doc.add_paragraph(block[1], style='Heading 1')
+            add_bookmark(p, anchors[block[1]])
             add_empty(keep=True)
         elif kind == 'h2':
-            doc.add_paragraph(block[1], style='Heading 2')
+            p = doc.add_paragraph(block[1], style='Heading 2')
+            add_bookmark(p, anchors[block[1]])
             add_empty(keep=True)
         elif kind == 'h1c':
             p = doc.add_paragraph(style='StructHeading')
             p.paragraph_format.page_break_before = True
             p.add_run(block[1])
+            add_bookmark(p, anchors[block[1]])
             add_empty(keep=True)
         elif kind == 'p':
             par = doc.add_paragraph(style='Normal')
@@ -362,7 +394,7 @@ def build_docx(page_map, path, counts):
                 par.paragraph_format.first_line_indent = Cm(0)
                 par.paragraph_format.tab_stops.add_tab_stop(
                     Cm(21.0 - PAGE['margin_left'] - PAGE['margin_right'] - 0.5 * level), 2, 1)
-                par.add_run('%s\t%s' % (text, page))
+                add_toc_link(par, anchors[text], text, page)
         elif kind == 'fig':
             add_figure(block[1], block[2])
         elif kind == 'table':
@@ -574,17 +606,23 @@ def build_odt(page_map, path, counts):
         odt.text.addElement(t)
         add_empty()
 
+    anchors = heading_anchors()
+
+    def add_heading(stylename, text, anchor):
+        p = P(stylename=stylename)
+        p.addElement(Bookmark(name=anchor))   # цель ссылки из содержания
+        p.addText(text)
+        odt.text.addElement(p)
+        add_empty()
+
     for block in content.SECTIONS:
         kind = block[0]
         if kind == 'h1':
-            add_p('ReportH1', block[1])
-            add_empty()
+            add_heading('ReportH1', block[1], anchors[block[1]])
         elif kind == 'h2':
-            add_p('ReportH2', block[1])
-            add_empty()
+            add_heading('ReportH2', block[1], anchors[block[1]])
         elif kind == 'h1c':
-            add_p('ReportH1c', block[1])
-            add_empty()
+            add_heading('ReportH1c', block[1], anchors[block[1]])
         elif kind == 'p':
             p = P(stylename='ReportBase')
             for part in iter_fig_refs(format_text(block[1], counts)):
@@ -604,7 +642,9 @@ def build_odt(page_map, path, counts):
         elif kind == 'toc':
             for level, text, page in toc_entries(page_map):
                 p = P(stylename='ReportToc2' if level else 'ReportToc1')
-                p.addText(text)
+                a = A(href='#%s' % anchors[text], type='simple')
+                a.addText(text)
+                p.addElement(a)
                 p.addElement(Tab())
                 p.addText(str(page))
                 odt.text.addElement(p)
@@ -669,6 +709,7 @@ def build_pdf(path, counts):
         def __init__(self, filename, **kw):
             BaseDocTemplate.__init__(self, filename, **kw)
             self.toc_pages = {}
+            self._anchors = heading_anchors()
 
         def afterFlowable(self, flowable):
             if isinstance(flowable, Paragraph):
@@ -678,7 +719,11 @@ def build_pdf(path, counts):
                     level = 1 if name == 'h2' else 0
                     self.toc_pages[text] = self.page
                     if text not in skip:
-                        self.notify('TOCEntry', (level, text, self.page))
+                        # именованная цель: клик из содержания ведёт к заголовку
+                        self.canv.bookmarkHorizontal(self._anchors[text], 0,
+                                                     self.frame._y + PAGE['leading'])
+                        self.notify('TOCEntry', (level, text, self.page,
+                                                 self._anchors[text]))
 
     left = PAGE['margin_left'] * cm
     right = PAGE['margin_right'] * cm
