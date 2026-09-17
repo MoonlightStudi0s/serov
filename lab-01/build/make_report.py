@@ -20,7 +20,7 @@ FONTS = os.path.join(BASE, 'fonts')
 sys.path.insert(0, BASE)
 import content  # noqa: E402
 
-IMG_WIDTH_CM = 16.0
+IMG_WIDTH_CM = float(os.environ.get('IMG_WIDTH_CM', '15'))
 DOCX_NAME = 'Отчёт_ЛР1_Установка_РОСА_на_VMware.docx'
 PDF_NAME = 'Отчёт_ЛР1_Установка_РОСА_на_VMware.pdf'
 
