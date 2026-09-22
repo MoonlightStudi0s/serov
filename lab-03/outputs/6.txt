@@ -1,0 +1,15 @@
+lerner-v@rosa-me7kar ~ $ cat /etc/default/grub
+GRUB_GFXPAYLOAD_LINUX=keep
+GRUB_DISABLE_RECOVERY=true
+GRUB_DISTRIBUTOR="ROSA"
+GRUB_GFXMODE=1024x768,1024x600,800x600,640x480
+GRUB_DEFAULT=saved
+GRUB_SAVEDEFAULT=true
+GRUB_TIMEOUT="4"
+GRUB_CMDLINE_LINUX_DEFAULT='splash=silent logo.nologo quiet'
+GRUB_DISABLE_OS_PROBER=false
+GRUB_THEME=/boot/grub2/themes/rosa/theme.txt
+GRUB_BACKGROUND=/boot/grub2/themes/rosa/terminal_background.png
+GRUB_CMDLINE_LINUX="rhgb quiet selinux=0"
+GRUB_ENABLE_BLSCFG=true
+GRUB_PASSWORD_PROTECT_ONLY_EDITING=true
