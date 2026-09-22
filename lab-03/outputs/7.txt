@@ -1,0 +1,52 @@
+lerner-v@rosa-me7kar ~ $ sudo cat /usr/sbin/grub2-mkconfig | head -50
+[sudo] пароль для lerner-v: 
+#! /bin/sh
+set -e
+
+# Generate grub.cfg by inspecting /boot contents.
+# Copyright (C) 2006,2007,2008,2009,2010 Free Software Foundation, Inc.
+#
+# GRUB is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# GRUB is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with GRUB.  If not, see <http://www.gnu.org/licenses/>.
+
+prefix="/usr"
+exec_prefix="/usr"
+datarootdir="/usr/share"
+
+prefix="/usr"
+exec_prefix="/usr"
+sbindir="/usr/sbin"
+bindir="/usr/bin"
+sysconfdir="/etc"
+PACKAGE_NAME=GRUB
+PACKAGE_VERSION=2.12
+host_os=linux-gnu
+datadir="/usr/share"
+if [ "x$pkgdatadir" = x ]; then
+    pkgdatadir="${datadir}/grub"
+fi
+# export it for scripts
+export pkgdatadir
+
+grub_cfg=""
+grub_mkconfig_dir="${sysconfdir}"/grub.d
+
+self=basename $0
+
+grub_probe="${sbindir}/grub2-probe"
+grub_file="${bindir}/grub2-file"
+grub_editenv="${bindir}/grub2-editenv"
+grub_script_check="${bindir}/grub2-script-check"
+
+export TEXTDOMAIN=grub
+export TEXTDOMAINDIR="${datarootdir}/locale"
