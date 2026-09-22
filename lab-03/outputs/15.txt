@@ -1,0 +1,1 @@
+lerner-v@rosa-me7kar ~ $ sudo nano /etc/default/grub
