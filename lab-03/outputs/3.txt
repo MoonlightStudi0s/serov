@@ -1,0 +1,2 @@
+lerner-v@rosa-me7kar ~ $ ls -la /boot/grub/grub.cfg /boot/grub2/grub.cfg 2>/dev/null
+-rw------- 1 root root 9555 сен 12 22:09 /boot/grub2/grub.cfg
