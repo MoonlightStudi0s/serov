@@ -1,0 +1,8 @@
+lerner-v@rosa-me7kar ~ $ lsblk -f
+NAME   FSTYPE  FSVER            LABEL                        UUID                                 FSAVAIL FSUSE% MOUNTPOINTS
+sda                                                                                                              
+├─sda1                                                                                                           
+├─sda2 swap    1                                             a1a00e8a-a6ef-464f-a924-c1b3f504194c                [SWAP]
+├─sda3 ext4    1.0                                           0f3daa60-8569-4981-a4f9-342b6d6c16ce   13,5G    37% /
+└─sda4 ext4    1.0                                           d74c47f7-3c42-47d2-aeb8-36c6a20f9adc     11G     1% /home
+sr0    iso9660 Joliet Extension ROSA_13_PLASMA6_x86_64_58655 2026-03-27-07-32-43-00
