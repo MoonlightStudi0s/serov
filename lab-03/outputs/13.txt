@@ -1,0 +1,11 @@
+lerner-v@rosa-me7kar ~ $ sudo grub2-mkconfig -o /boot/grub2/grub.cfg
+Генерируется файл настройки grub …
+Найдена тема: /boot/grub2/themes/rosa/theme.txt
+Найден фон: /boot/grub2/themes/rosa/terminal_background.png
+Найден образ linux: /boot/vmlinuz-6.12.74-generic-2rosa13-x86_64
+Найден образ initrd: /boot/initrd-6.12.74-generic-2rosa13-x86_64.img
+Found memtest86+ image: /boot/memtest86.bin
+Предупреждение: os-prober will be executed to detect other bootable partitions.
+Its output will be used to detect bootable binaries on them and create new boot entries.
+Добавляется элемент загрузочного меню для настроек микропрограммы UEFI …
+завершено
