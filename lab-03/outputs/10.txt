@@ -1,0 +1,4 @@
+lerner-v@rosa-me7kar ~ $ sudo cp /etc/default/grub /etc/default/grub.backup
+lerner-v@rosa-me7kar ~ $ sudo nano /etc/grub.d/40_custom
+lerner-v@rosa-me7kar ~ $ sudo chmod +x /etc/grub.d/40_custom
+lerner-v@rosa-me7kar ~ $
