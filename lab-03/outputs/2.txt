@@ -1,0 +1,4 @@
+lerner-v@rosa-me7kar ~ $ which update-grub grub-mkconfig grub2-mkconfig
+which: no update-grub in (/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/usr/local/games:/usr/games:/home/lerner-v/.local/bin:/home/lerner-v/bin)
+which: no grub-mkconfig in (/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/usr/local/games:/usr/games:/home/lerner-v/.local/bin:/home/lerner-v/bin)
+/usr/sbin/grub2-mkconfig
