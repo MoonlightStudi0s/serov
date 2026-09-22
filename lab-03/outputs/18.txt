@@ -1,0 +1,2 @@
+lerner-v@rosa-me7kar ~ $ cat /proc/cmdline
+BOOT_IMAGE=/boot/vmlinuz-6.12.74-generic-2rosa13-x86_64 root=UUID=0f3daa60-8569-4981-a4f9-342b6d6c16ce ro rhgb quiet selinux=0 lang=ru_RU.UTF-8 splash=silent logo.nologo quiet net.ifnames=0 resume=UUID=a1a00e8a-a6ef-464f-a924-c1b3f504194c
