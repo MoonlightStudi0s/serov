@@ -1,0 +1,12 @@
+#!/bin/sh
+exec tail -n +3 $0
+
+menuentry "Linux (Recovery Mode)" {
+    load_video
+    insmod gzio
+    insmod part_gpt
+    insmod ext2
+    search --no-floppy --fs-uuid --set=root 0f3daa60-8569-4981-a4f9-342b6d6c16ce
+    linux /vmlinuz-6.12.74-generic-2rosa13-x86_64 root=UUID=0f3daa60-8569-4981-a4f9-342b6d6c16ce ro single
+    initrd /initrd-6.12.74-generic-2rosa13-x86_64.img
+}
