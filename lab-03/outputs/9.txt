@@ -1,0 +1,17 @@
+lerner-v@rosa-me7kar ~ $ sudo ls -la /etc/grub.d/
+итого 112
+drwx------   2 root root  4096 мар 27 10:27 .
+drwxr-xr-x 143 root root 12288 сен 22 18:21 ..
+-rwxr-xr-x   1 root root  8880 янв 13  2026 00_header
+-rwxr-xr-x   1 root root    63 окт 27  2025 01_acpi_hotpatch
+-rwxr-xr-x   1 root root   232 янв 13  2026 01_users
+-rwxr-xr-x   1 root root 13116 янв 13  2026 10_linux
+-rwxr-xr-x   1 root root 14445 янв 13  2026 20_linux_xen
+-rwxr-xr-x   1 root root   730 ноя 26  2025 20_memtest86
+-rwxr-xr-x   1 root root   786 янв 13  2026 25_bli
+-rwxr-xr-x   1 root root 15719 янв 13  2026 30_os-prober
+-rwxr-xr-x   1 root root  1194 янв 13  2026 30_uefi-firmware
+-rwxr-xr-x   1 root root   730 окт 27  2025 35_fwupd
+-rwxr-xr-x   1 root root   214 янв 13  2026 40_custom
+-rwxr-xr-x   1 root root   215 янв 13  2026 41_custom
+-rw-r--r--   1 root root   483 ноя 24  2018 README
