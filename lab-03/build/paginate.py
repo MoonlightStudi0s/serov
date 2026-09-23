@@ -315,6 +315,8 @@ class Item(object):
         self.w = kw.get('w', 0.0)
         self.h = kw.get('h', 0.0)
         self.table = kw.get('table')
+        self.caption = kw.get('caption')
+        self.caption_style = kw.get('caption_style')
         self.anchor = kw.get('anchor')
         self.outline = kw.get('outline', 0)
         self.table_index = kw.get('table_index', -1)
@@ -336,10 +338,10 @@ def _para_text(p):
         elif tag == qn('text', 'line-break'):
             out.append('\n')
         elif tag in (qn('draw', 'frame'), qn('draw', 'custom-shape')):
-            continue
+            pass                     # сам кадр в текст абзаца не попадает…
         else:
             out.append(_para_text(child) if len(child) else (child.text or ''))
-        if child.tail:
+        if child.tail:               # …а текст после кадра — попадает
             out.append(child.tail)
     return ''.join(out)
 
@@ -377,8 +379,7 @@ def read_odt(path, ctx, styles):
             frames = el.findall(qn('draw', 'frame'))
             if frames:
                 for fr in frames:
-                    w, h, href = _frame_size(fr)
-                    items.append(Item('img', style, image=href, w=w, h=h))
+                    items.append(_frame_item(fr, style, styles))
                 continue
             # заголовки распознаются по именам стилей отчёта: H1/H1Break/H2/StructH
             level = 2 if name.startswith('H2') else (
@@ -391,11 +392,45 @@ def read_odt(path, ctx, styles):
                               table=_read_table(el, ctx, styles),
                               table_index=n_tables))
         elif tag == qn('text', 'table-of-content'):
-            items.append(Item('toc', styles.get('Standard', Style('Standard')),
-                              text='(СОДЕРЖАНИЕ)'))
-        elif tag == qn('text', 'section'):
+            # строки оглавления лежат в index-body и размечаются как обычные абзацы
+            for index_body in el.findall(qn('text', 'index-body')):
+                for paragraph in index_body.findall(qn('text', 'p')):
+                    name = paragraph.get(qn('text', 'style-name'), 'Standard')
+                    items.append(Item('p', styles.get(name, Style(name)),
+                                      text=_para_text(paragraph)))
+        elif tag in (qn('text', 'section'), qn('text', 'sequence-decls')):
             pass
     return items, zf
+
+
+def _frame_item(frame, style, styles):
+    """Элемент потока для кадра: рисунок, при необходимости — с подписью внутри.
+
+    Кадр-врезка (как в отчётах преподавателя) содержит draw:text-box, внутри
+    которого находится встроенный кадр изображения и текст подписи. Высота
+    такого элемента — высота рисунка плюс строки подписи.
+    """
+    text_box = frame.find(qn('draw', 'text-box'))
+    if text_box is None:
+        w, h, href = _frame_size(frame)
+        return Item('img', style, image=href, w=w, h=h)
+
+    image = None
+    caption_parts = []
+    caption_style = style
+    for paragraph in text_box.findall(qn('text', 'p')):
+        name = paragraph.get(qn('text', 'style-name'), 'Standard')
+        caption_style = styles.get(name, style)
+        caption_parts.append(_para_text(paragraph))
+        inner = paragraph.find(qn('draw', 'frame'))
+        if inner is not None:
+            image = _frame_size(inner)
+    if image is None:
+        image = _frame_size(frame)
+    w, h, href = image
+    caption = ' '.join(part.strip() for part in caption_parts if part.strip())
+    return Item('img', style, image=href, w=w, h=h, caption=caption,
+                caption_style=caption_style)
 
 
 def _bookmark_of(el):
@@ -472,17 +507,17 @@ def layout(items, ctx, start_page=1):
 
         if item.kind == 'img':
             x = (ctx.text_w - item.w) / 2.0
-            block = item.h + style.get('sb') + 0.0
-            nxt = items[i + 1] if i + 1 < len(items) and items[i + 1].kind == 'p' else None
-            if item.keep_next and nxt is not None:
-                cap_lh = ctx.line_height(nxt.style)
-                cap_lines = ctx.wrap(nxt.text, nxt.style)
-                block += len(cap_lines) * cap_lh + nxt.style.get('sa')
+            height = item.h
+            if item.caption:               # подпись находится внутри кадра
+                cap_style = item.caption_style or style
+                cap_lines = ctx.wrap(item.caption, cap_style, width=item.w)
+                height += len(cap_lines) * ctx.line_height(cap_style)
+            block = height + style.get('sb') + style.get('sa')
             page = pages[-1]
             if block > free(page) and free(page) < ctx.text_h - 1e-6:
                 page = new_page()
             y = ctx.mt + page.used + style.get('sb')
-            place(page, item, x, y, [], item.h + style.get('sb'))
+            place(page, item, x, y, [], block)
             i += 1
             continue
 

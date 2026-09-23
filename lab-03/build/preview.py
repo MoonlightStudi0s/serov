@@ -35,6 +35,12 @@ def build_pdf(odt_path, pdf_path):
                         ('Tinos-Italic', 'Tinos-Italic.ttf'),
                         ('Tinos-BoldItalic', 'Tinos-BoldItalic.ttf')):
         pdfmetrics.registerFont(TTFont(name, os.path.join(FONTS, fname)))
+    # моноширинный шрифт с кириллицей — только для предпросмотра
+    # (в самом отчёте указан Courier New, как и требует методичка)
+    dejavu = '/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf'
+    if os.path.exists(dejavu):
+        pdfmetrics.registerFont(TTFont('CourierMono', dejavu))
+        pdfmetrics.registerFontFamily('CourierMono', normal='CourierMono', bold='CourierMono')
     pdfmetrics.registerFontFamily('Tinos', normal='Tinos', bold='Tinos-Bold',
                                   italic='Tinos-Italic', boldItalic='Tinos-BoldItalic')
 
@@ -66,7 +72,8 @@ def build_pdf(odt_path, pdf_path):
     def font_of(style):
         family = style.get('font_family') or 'Times New Roman'
         if ctx.is_mono(family):
-            return 'Courier'
+            return 'CourierMono' if os.path.exists(
+                '/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf') else 'Courier'
         if style.get('bold') and style.get('italic'):
             return 'Tinos-BoldItalic'
         if style.get('bold'):
@@ -76,8 +83,9 @@ def build_pdf(odt_path, pdf_path):
         return 'Tinos'
 
     def ascent_of(style):
-        return ASCENT['mono' if ctx.is_mono(style.get('font_family')) else 'roman'] \
-            * style.get('font_size')
+        if ctx.is_mono(style.get('font_family')):
+            return 0.76 * style.get('font_size')      # DejaVu Sans Mono: 1556+483 / 2048
+        return ASCENT['roman'] * style.get('font_size')
 
     def draw_text_run(x, y_baseline, text, style, width=None, align='left'):
         size_pt = style.get('font_size')
@@ -113,6 +121,13 @@ def build_pdf(odt_path, pdf_path):
                 canvas.drawImage(ImageReader(image), placed.x, top - item.h,
                                  width=item.w, height=item.h,
                                  preserveAspectRatio=False)
+                if item.caption:        # подпись внутри кадра, под рисунком
+                    cap_style = item.caption_style or style
+                    cap_lh = ctx.line_height(cap_style)
+                    lines = ctx.wrap(item.caption, cap_style, width=item.w)
+                    for n, line in enumerate(lines):
+                        baseline = top - item.h - n * cap_lh - ascent_of(cap_style)
+                        draw_text_run(ctx.ml, baseline, line, cap_style, align='center')
                 continue
             if item.kind == 'table':
                 row = item.table['rows'][placed.meta.get('row_index', 0)]
@@ -153,6 +168,10 @@ def build_pdf(odt_path, pdf_path):
                     continue
                 if align == 'center':
                     draw_text_run(x, baseline, line, style, align='center')
+                elif align == 'end':
+                    draw_text_run(x, baseline, line, style,
+                                  width=ctx.text_w - style.get('left', 0.0),
+                                  align='right')
                 else:
                     draw_text_run(x, baseline, line, style)
         canvas.showPage()

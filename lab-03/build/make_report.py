@@ -15,18 +15,28 @@ lab-01/examples/ОформлениеОтчета_Краткая_выписка_�
     пустая строка; заголовки подразделов дополнительно разрежены на 3 пт;
   * названия структурных элементов (РЕФЕРАТ, СОДЕРЖАНИЕ, СПИСОК
     ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ) — с нового листа, по центру, прописными;
-  * подпись рисунка — по центру под рисунком («Рисунок N – Название»),
-    название таблицы — слева над таблицей («Таблица N – Название»);
-  * выводы команд — моноширинным шрифтом Courier New 10 пт;
-  * номера страниц в СОДЕРЖАНИИ — поля-перекрёстные ссылки на закладки: в
-    LibreOffice они пересчитываются автоматически; в файл записываются
-    значения, рассчитанные модулем paginate.py.
+  * выводы команд — моноширинным шрифтом Courier New 10 пт.
+
+Титульный лист повторяет оформление файла lab-01/examples/Gentoo.odt.
+
+Поля и перекрёстные ссылки (как в файлах-образцах преподавателя):
+
+  * подпись рисунка находится внутри кадра с рисунком (draw:text-box), номер
+    подписи — поле-последовательность text:sequence;
+  * ссылки в тексте вида «(Рисунок 5)» — поля text:sequence-ref, то есть
+    перекрёстные ссылки, которые пересчитываются в LibreOffice;
+  * СОДЕРЖАНИЕ — поле-оглавление text:table-of-content: каждая строка целиком
+    является гиперссылкой на соответствующий раздел, номера страниц
+    пересчитываются при обновлении полей;
+  * в файл записываются значения, рассчитанные модулем paginate.py, поэтому
+    содержание и нумерация верны и до обновления полей.
 
 Скриншоты берутся из ../screenshots, выводы команд — из ../outputs,
 готовый файл складывается в ../report.
 """
 
 import os
+import re
 import sys
 
 from PIL import Image
@@ -61,7 +71,7 @@ PAGE = {
 }
 
 ODT_NAME = 'Отчёт_ЛР3_Настройка_загрузчика_GRUB2.odt'
-
+TOC_NAME = 'Содержание'
 
 # -------------------------------------------------------------------- утилиты
 def img_size(path, width_cm, max_height_cm):
@@ -111,9 +121,69 @@ def with_attrs(element, mapping):
     return element
 
 
-def new(cls, mapping=None):
-    element = cls()
-    return with_attrs(element, mapping) if mapping else element
+# ------------------------------------------------- ссылки на рисунки в тексте
+# «(рисунок 5)» превращается в перекрёстную ссылку на подпись рисунка 5.
+FIG_REF = re.compile(r'[Рр]исунок\s+(\d+)')
+
+
+def sequence_field(kind, number):
+    """Поле-номер рисунка или таблицы: <text:sequence …>N</text:sequence>.
+
+    Русские имена последовательностей («Рисунок», «Таблица») заданы так же,
+    как в файлах-образцах преподавателя: подпись и ссылка в этом случае
+    показывают одно и то же название.
+    """
+    from odf.text import Sequence
+    element = Sequence(name=kind, refname='ref%s%d' % (kind, number),
+                       formula='ooow:%s+1' % kind, numformat='1')
+    element.addText(str(number))
+    return element
+
+
+def ref_field(kind, number):
+    """Перекрёстная ссылка на номер рисунка или таблицы (поле REF).
+
+    Поле показывает только номер, поэтому название («Рисунок»/«Таблица»)
+    подставляется обычным текстом в абзац — так ссылка выглядит одинаково и
+    до, и после обновления полей в LibreOffice.
+    """
+    from odf.text import SequenceRef
+    element = SequenceRef(refname='ref%s%d' % (kind, number),
+                          referenceformat='value')
+    element.addText(str(number))
+    return element
+
+
+def figure_sequence(number):
+    return sequence_field('Рисунок', number)
+
+
+def table_sequence(number):
+    return sequence_field('Таблица', number)
+
+
+def emit_text(paragraph, text, refs=True):
+    """Добавляет текст в абзац, заменяя упоминания рисунков на перекрёстные ссылки.
+
+    Разрыв строки '\\n' превращается в <text:line-break/>.
+    """
+    from odf.text import LineBreak
+    for chunk in text.split('\n'):
+        if chunk is not text.split('\n')[0]:
+            paragraph.addElement(LineBreak())
+        if not refs:
+            paragraph.addText(chunk)
+            continue
+        position = 0
+        for match in FIG_REF.finditer(chunk):
+            number = int(match.group(1))
+            paragraph.addText(chunk[position:match.start()])
+            # название ссылки — обычным текстом, номер — полем (серым в LibreOffice)
+            word = match.group(0).split()[0]        # «Рисунок» или «рисунок»
+            paragraph.addText(word + ' ')
+            paragraph.addElement(ref_field('Рисунок', number))
+            position = match.end()
+        paragraph.addText(chunk[position:])
 
 
 # --------------------------------------------------------------------- стили
@@ -127,19 +197,23 @@ def make_styles(doc):
     TNR = 'Times New Roman'
     MONO = 'Courier New'
 
-    def text_props(size=14, bold=False, mono=False, spacing=None):
+    def text_props(size=14, bold=False, mono=False, spacing=None, underline=None,
+                   color='#000000'):
         props = {
             'fo:font-size': pt(size),
             'fo:font-family': "'%s'" % (MONO if mono else TNR),
             'style:font-name': MONO if mono else TNR,
             'style:font-family-generic': 'modern' if mono else 'roman',
             'style:font-pitch': 'fixed' if mono else 'variable',
-            'fo:color': '#000000',
+            'fo:color': color,
             'fo:font-weight': 'bold' if bold else 'normal',
             'fo:hyphenate': 'false',
         }
         if spacing:
             props['fo:letter-spacing'] = cm(spacing)
+        if underline:
+            props['style:text-underline-style'] = underline
+            props['style:text-underline-color'] = 'font-color'
         return with_attrs(TextProperties(), props)
 
     def para_props(align='justify', indent=0.0, left=None, before=0.0, after=0.0,
@@ -166,7 +240,7 @@ def make_styles(doc):
         if master:
             props['style:master-page-name'] = master
         element = with_attrs(ParagraphProperties(), props)
-        if tab:                     # отточие и номер страницы справа — для СОДЕРЖАНИЯ
+        if tab:                     # отточие и номер страницы справа — в СОДЕРЖАНИИ
             stops = TabStops()
             stops.addElement(with_attrs(TabStop(position=cm(PAGE['text_width'])), {
                 'style:type': 'right',
@@ -197,43 +271,58 @@ def make_styles(doc):
                    break_before=True))
     add('H2', text_props(PAGE['body_size'], bold=True, spacing=0.106),
         para_props(align='start', indent=indent, after=blank, keep_next=True))
+    # структурный элемент с нового листа по центру: РЕФЕРАТ, СОДЕРЖАНИЕ
     add('StructH', text_props(PAGE['body_size'], bold=True),
         para_props(align='center', indent=0, after=blank, keep_next=True,
                    break_before=True, master='Standard'))
-    # --- рисунки и таблицы
+    # СПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ — тот же вид, но стиль включён в оглавление
+    add('H1CenterBreak', text_props(PAGE['body_size'], bold=True),
+        para_props(align='center', indent=0, after=blank, keep_next=True,
+                   break_before=True, master='Standard'))
+    # --- рисунок с подписью внутри кадра
     add('FigPara', text_props(PAGE['body_size']),
-        para_props(align='center', indent=0, before=6, line_height=100,
-                   keep_next=True))
-    add('FigCaption', text_props(PAGE['body_size']),
         para_props(align='center', indent=0, before=6, after=blank))
+    add('FigInner', text_props(PAGE['body_size']),
+        para_props(align='center', indent=0, line_height=100))
+    # --- название таблицы
     add('TabCaption', text_props(PAGE['body_size']),
         para_props(align='start', indent=0, before=12, after=6, keep_next=True))
-    # подпись таблицы, которую нельзя разрывать между страницами: переносим её
-    # вместе с таблицей на следующий лист
     add('TabCaptionBreak', text_props(PAGE['body_size']),
         para_props(align='start', indent=0, before=12, after=6, keep_next=True,
                    break_before=True))
     # --- выводы команд
     add('Code', text_props(PAGE['code_size'], mono=True),
         para_props(align='start', indent=0, line_height=100))
-    # --- содержание
+    # --- содержание (строки оглавления и его заголовок)
     add('TOC1', text_props(PAGE['body_size']), para_props(align='start', indent=0, tab=True))
     add('TOC2', text_props(PAGE['body_size']),
         para_props(align='start', indent=0, left=0.5, tab=True))
-    # --- титульный лист
-    add('TitleFirst', text_props(PAGE['body_size'], bold=True),
-        para_props(align='center', indent=0, after=6, line_height=100,
+    add('TOCHead', text_props(PAGE['body_size'], bold=True),
+        para_props(align='center', indent=0, after=blank))
+    # --- титульный лист (оформление как в Gentoo.odt)
+    add('TCollege', text_props(PAGE['body_size'], bold=True),
+        para_props(align='center', indent=0, before=12, after=12, line_height=100,
                    master='FirstPage'))
-    add('TitleLine', text_props(PAGE['body_size']),
-        para_props(align='center', indent=0, after=6, line_height=100))
-    add('TitleBold', text_props(PAGE['body_size'], bold=True),
-        para_props(align='center', indent=0, after=6, line_height=100))
-    add('TitleSmall', text_props(12),
-        para_props(align='center', indent=0, after=6, line_height=100))
-    add('TitleBig', text_props(18, bold=True),
-        para_props(align='center', indent=0, after=6, line_height=100))
+    add('TWork', text_props(PAGE['body_size'], bold=True),
+        para_props(align='center', indent=0, before=12, after=12, line_height=100))
+    add('TMid', text_props(PAGE['body_size']),
+        para_props(align='center', indent=0, before=12, after=12, line_height=100))
+    add('TExec', text_props(PAGE['body_size']),
+        para_props(align='end', indent=0, before=6, after=6, line_height=100))
+    add('TBottom', text_props(PAGE['body_size']),
+        para_props(align='center', indent=0, before=6, after=6, line_height=100))
     add('FootP', text_props(PAGE['body_size']),
         para_props(align='center', indent=0, line_height=100))
+
+    # --- завершающая точка названия работы (16 пт, как в Gentoo.odt)
+    span = Style(name='TitleDot', family='text')
+    span.addElement(text_props(16, bold=True))
+    doc.styles.addElement(span)
+
+    # --- стиль гиперссылок содержания: обычный чёрный текст без подчёркивания
+    link = Style(name='TOCLink', family='text')
+    link.addElement(text_props(PAGE['body_size']))
+    doc.styles.addElement(link)
 
     # --- ячейки таблиц
     cell_text = text_props(PAGE['table_size'])
@@ -259,6 +348,18 @@ def make_styles(doc):
             'fo:widows': '2',
             'fo:font-weight': 'bold' if bold else 'normal',
         }))
+        doc.styles.addElement(style)
+
+    # --- графические стили кадров: врезка с рисунком и сам рисунок
+    for name, props in (
+        ('frFigure', {'style:wrap': 'none', 'fo:border': 'none'}),
+        ('frImage', {'style:wrap': 'none', 'style:run-through': 'foreground',
+                     'style:horizontal-pos': 'center', 'style:horizontal-rel': 'paragraph',
+                     'fo:border': 'none'}),
+    ):
+        style = Style(name=name, family='graphic')
+        style.addElement(with_attrs(__import__('odf.style', fromlist=['x'])
+                                    .GraphicProperties(), props))
         doc.styles.addElement(style)
 
     # --- параметры страницы
@@ -293,12 +394,16 @@ def make_styles(doc):
 
 # ------------------------------------------------------------------- документ
 def build_document(page_map=None, page_count=None, path=None, table_breaks=None):
-    """Собирает ODT. page_map — {(уровень, заголовок): страница}."""
+    """Собирает ODT. page_map — {(уровень, заголовок): страница} для СОДЕРЖАНИЯ."""
     from odf.opendocument import OpenDocumentText
-    from odf.text import (P, Tab, BookmarkStart, BookmarkEnd, BookmarkRef,
-                          PageCount)
+    from odf.text import (P, Span, Tab, LineBreak, BookmarkStart, BookmarkEnd,
+                          PageCount, SequenceDecls, SequenceDecl, TableOfContent,
+                          TableOfContentSource, TableOfContentEntryTemplate, IndexBody,
+                          IndexTitleTemplate, IndexEntryLinkStart, IndexEntryChapter,
+                          IndexEntryText, IndexEntryTabStop, IndexEntryPageNumber,
+                          IndexEntryLinkEnd, IndexSourceStyles, IndexSourceStyle, A)
     from odf.dc import Title as MetaTitle, Creator
-    from odf.draw import Frame, Image as DrawImage
+    from odf.draw import Frame, TextBox, Image as DrawImage
     from odf.table import Table, TableColumn, TableRow, TableCell
     from odf.style import Style, TableColumnProperties
 
@@ -310,6 +415,12 @@ def build_document(page_map=None, page_count=None, path=None, table_breaks=None)
     body = doc.text
     fig_no = [0]
     tab_no = [0]
+
+    # --- объявления последовательностей (нужны для полей нумерации рисунков и таблиц)
+    decls = SequenceDecls()
+    for name in ('Рисунок', 'Таблица'):
+        decls.addElement(SequenceDecl(name=name, displayoutlinelevel='0'))
+    body.addElement(decls)
 
     # --- предварительный проход: список заголовков для СОДЕРЖАНИЯ
     headings = []
@@ -328,35 +439,30 @@ def build_document(page_map=None, page_count=None, path=None, table_breaks=None)
                 headings.append((2 if kind == 'h2' else 1, block[1], name))
     heading_iter = iter(all_names)
 
-    def add_par(text, style='Body'):
+    def add_par(text, style='Body', refs=True):
         p = P(stylename=style)
-        p.addText(text)
+        emit_text(p, text, refs=refs)
         body.addElement(p)
         return p
 
     # ------------------------------------------------------------ титульный лист
-    for i, line in enumerate(content.TITLE):
+    for line in content.TITLE:
         text = line['t']
-        if i == 0:
-            style = 'TitleFirst'
-        elif line.get('sz') == 18:
-            style = 'TitleBig'
-        elif line.get('sz') == 12:
-            style = 'TitleSmall'
-        elif line.get('b'):
-            style = 'TitleBold'
+        p = P(stylename=line['st'])
+        if line.get('dot') and text.endswith('.'):
+            emit_text(p, text[:-1], refs=False)
+            p.addElement(Span(text='.', stylename='TitleDot'))
         else:
-            style = 'TitleLine'
-        add_par(text, style=style)
-        for _ in range(int(round(line.get('gap', 0) / 18.0))):   # пустые строки-отбивки
-            add_par('', style='TitleLine')
+            emit_text(p, text, refs=False)
+        body.addElement(p)
 
     # ------------------------------------------------------------------- текст
     for block in content.SECTIONS:
         kind = block[0]
         if kind == 'h1c':
             name = next(heading_iter)
-            p = P(stylename='StructH')
+            style = 'H1CenterBreak' if (len(block) > 2 and block[2] == 'refs') else 'StructH'
+            p = P(stylename=style)
             p.addElement(BookmarkStart(name=name))
             p.addText(block[1])
             p.addElement(BookmarkEnd(name=name))
@@ -384,38 +490,64 @@ def build_document(page_map=None, page_count=None, path=None, table_breaks=None)
                 add_par('%d %s' % (i, item))
         elif kind == 'code':
             for line in block[1].split('\n'):
-                add_par(line, style='Code')
-            add_par('')                       # пустая строка после вывода команды
+                add_par(line, style='Code', refs=False)
+            add_par('', refs=False)          # пустая строка после вывода команды
         elif kind == 'fig':
             fig_no[0] += 1
+            number = fig_no[0]
             path_img = os.path.join(SHOTS, block[1])
             w, h = img_size(path_img, PAGE['img_width'], PAGE['img_max_height'])
             href = doc.addPictureFromFile(path_img)
-            p = P(stylename='FigPara')
-            frame = with_attrs(Frame(), {
-                'draw:name': 'Picture%d' % fig_no[0],
+
+            # подпись внутри кадра с рисунком: внешний кадр → текстовое поле →
+            # встроенный кадр изображения и текст подписи
+            outer = with_attrs(Frame(), {
+                'draw:style-name': 'frFigure',
+                'draw:name': 'Врезка%d' % number,
                 'text:anchor-type': 'as-char',
                 'svg:width': cm(w),
-                'svg:height': cm(h),
-                'draw:z-index': '0',
+                'draw:z-index': str(2 * number),
             })
-            frame.addElement(DrawImage(href=href, type='simple', show='embed',
+            inner = with_attrs(Frame(), {
+                'draw:style-name': 'frImage',
+                'draw:name': 'Изображение%d' % number,
+                'text:anchor-type': 'paragraph',
+                'svg:width': cm(w),
+                'style:rel-width': '100%',
+                'svg:height': cm(h),
+                'style:rel-height': 'scale',
+                'draw:z-index': str(2 * number + 1),
+            })
+            inner.addElement(DrawImage(href=href, type='simple', show='embed',
                                        actuate='onLoad'))
-            p.addElement(frame)
+            caption = P(stylename='FigInner')
+            caption.addElement(inner)
+            caption.addText('Рисунок ')
+            caption.addElement(figure_sequence(number))
+            caption.addText(' – %s' % block[2])
+            text_box = with_attrs(TextBox(), {'fo:min-height': cm(h)})
+            text_box.addElement(caption)
+            outer.addElement(text_box)
+
+            p = P(stylename='FigPara')
+            p.addElement(outer)
             body.addElement(p)
-            add_par('Рисунок %d – %s' % (fig_no[0], block[2]), style='FigCaption')
         elif kind == 'table':
             spec = block[1]
             tab_no[0] += 1
-            add_par(spec['caption'],
-                    style='TabCaptionBreak' if tab_no[0] - 1 in table_breaks
-                    else 'TabCaption')
-            table = Table(name='Таблица %d' % tab_no[0])
+            number = tab_no[0]
+            caption = P(stylename='TabCaptionBreak' if number - 1 in table_breaks
+                        else 'TabCaption')
+            caption.addText('Таблица ')
+            caption.addElement(table_sequence(number))
+            caption.addText(' – %s' % spec['caption'])
+            body.addElement(caption)
+            table = Table(name='Таблица %d' % number)
             for i, width in enumerate(spec['widths']):
-                col_name = 'Col%d_%d' % (tab_no[0], i)
+                col_name = 'Col%d_%d' % (number, i)
                 col_style = Style(name=col_name, family='table-column')
                 col_style.addElement(with_attrs(TableColumnProperties(),
-                                            {'style:column-width': cm(width)}))
+                                                {'style:column-width': cm(width)}))
                 doc.automaticstyles.addElement(col_style)
                 table.addElement(TableColumn(stylename=col_name))
             for r, row in enumerate([spec['head']] + spec['rows']):
@@ -429,7 +561,7 @@ def build_document(page_map=None, page_count=None, path=None, table_breaks=None)
                     tr.addElement(cell)
                 table.addElement(tr)
             body.addElement(table)
-            add_par('')
+            add_par('', refs=False)
         elif kind == 'counts':
             head, tail = block[1].split('{pages}', 1)
             p = P(stylename='Body')
@@ -442,14 +574,7 @@ def build_document(page_map=None, page_count=None, path=None, table_breaks=None)
                                   sources=len(content.REFS)))
             body.addElement(p)
         elif kind == 'toc':
-            for level, text, name in headings:
-                p = P(stylename='TOC1' if level == 1 else 'TOC2')
-                p.addText(text)
-                p.addElement(Tab())
-                ref = BookmarkRef(refname=name, referenceformat='page')
-                ref.addText(str(page_map.get((level, text), '')))
-                p.addElement(ref)
-                body.addElement(p)
+            body.addElement(build_toc(headings, page_map))
 
     doc.meta.addElement(MetaTitle(text='Отчёт о лабораторной работе № 3. '
                                        'Настройка загрузчика GRUB2'))
@@ -459,6 +584,56 @@ def build_document(page_map=None, page_count=None, path=None, table_breaks=None)
     return doc, headings
 
 
+def build_toc(headings, page_map):
+    """Поле-оглавление: каждая строка целиком — гиперссылка на раздел."""
+    from odf.text import (P, Tab, TableOfContent, TableOfContentSource,
+                          TableOfContentEntryTemplate, IndexBody, IndexTitleTemplate,
+                          IndexEntryLinkStart, IndexEntryChapter, IndexEntryText,
+                          IndexEntryTabStop, IndexEntryPageNumber, IndexEntryLinkEnd,
+                          IndexSourceStyles, IndexSourceStyle, A)
+
+    toc = with_attrs(TableOfContent(name=TOC_NAME, protected='true'),
+                     {'text:style-name': 'TOC1'})
+
+    source = with_attrs(TableOfContentSource(), {
+        'text:outline-level': '2',
+        'text:use-outline-level': 'false',
+        'text:use-index-marks': 'false',
+        'text:use-index-source-styles': 'true',
+    })
+    source.addElement(with_attrs(IndexTitleTemplate(), {'text:style-name': 'TOCHead'}))
+    for level in (1, 2):
+        template = TableOfContentEntryTemplate(stylename='TOC%d' % level,
+                                               outlinelevel=str(level))
+        template.addElement(with_attrs(IndexEntryLinkStart(), {'text:style-name': 'TOCLink'}))
+        template.addElement(IndexEntryChapter())
+        template.addElement(IndexEntryText())
+        template.addElement(with_attrs(IndexEntryTabStop(),
+                                       {'style:type': 'right', 'style:leader-char': '.'}))
+        template.addElement(IndexEntryPageNumber())
+        template.addElement(IndexEntryLinkEnd())
+        source.addElement(template)
+    for level, styles in ((1, ['H1', 'H1Break', 'H1CenterBreak']), (2, ['H2'])):
+        block = IndexSourceStyles(outlinelevel=str(level))
+        for style_name in styles:
+            block.addElement(IndexSourceStyle(stylename=style_name))
+        source.addElement(block)
+    toc.addElement(source)
+
+    index_body = IndexBody()
+    for level, text, name in headings:
+        paragraph = P(stylename='TOC1' if level == 1 else 'TOC2')
+        link = A(href='#' + name, type='simple', stylename='TOCLink',
+                 visitedstylename='TOCLink')
+        link.addText(text)
+        link.addElement(Tab())
+        link.addText(str(page_map.get((level, text), '')))
+        paragraph.addElement(link)
+        index_body.addElement(paragraph)
+    toc.addElement(index_body)
+    return toc
+
+
 def main():
     os.makedirs(REPORT_DIR, exist_ok=True)
     path = os.path.join(REPORT_DIR, ODT_NAME)
@@ -466,6 +641,7 @@ def main():
     # --- итерации: подбираем таблицы, которые нужно перенести целиком,
     #     и рассчитываем номера страниц для СОДЕРЖАНИЯ
     table_breaks = set()
+    total = 1
     for step in range(6):
         build_document(page_map={}, page_count=1, path=path,
                        table_breaks=table_breaks)
