@@ -26,6 +26,7 @@ lab-01/examples/ОформлениеОтчета_Краткая_выписка_�
 """
 
 import os
+import re
 import sys
 
 from PIL import Image
@@ -40,7 +41,8 @@ REPORT_DIR = os.path.join(LAB, 'report')
 FONTS = os.path.normpath(os.path.join(BASE, '..', '..', 'lab-01', 'build', 'fonts'))
 
 sys.path.insert(0, BASE)
-import content  # noqa: E402
+import content   # noqa: E402
+import figures   # noqa: E402
 import paginate  # noqa: E402
 
 # ------------------------------------------------------------------ параметры
@@ -64,23 +66,6 @@ ODT_NAME = 'Отчёт_ЛР4_Установка_Calculate_Linux_на_VMware.odt'
 
 
 # -------------------------------------------------------------------- утилиты
-def img_size(path, width_cm, max_height_cm, min_dpi):
-    """Размер рисунка в сантиметрах с сохранением пропорций.
-
-    Мелкие изображения (диалоговые окна мастера создания виртуальной машины)
-    не растягиваются на всю ширину текста: ширина ограничивается так, чтобы
-    плотность изображения была не ниже min_dpi.
-    """
-    with Image.open(path) as im:
-        w, h = im.size
-    width = min(float(width_cm), w * 2.54 / float(min_dpi))
-    height = width * h / float(w)
-    if height > max_height_cm:
-        height = float(max_height_cm)
-        width = height * w / float(h)
-    return round(width, 3), round(height, 3)
-
-
 def cm(value):
     return '%.3fcm' % value
 
@@ -115,6 +100,82 @@ def with_attrs(element, mapping):
 def new(cls, mapping=None):
     element = cls()
     return with_attrs(element, mapping) if mapping else element
+
+
+# -------------------------------------------- перекрёстные ссылки [[рисунок N]]
+XREF_RE = re.compile(r'\[\[([^\[\]]+)\]\]')
+
+
+def _ref_number(form):
+    """Номер объекта из формы ссылки ('рисунок 20' -> 20, 'рисунке 21' -> 21)."""
+    match = re.search(r'(\d+)\s*$', form.strip())
+    return int(match.group(1)) if match else None
+
+
+def collect_xrefs(sections):
+    """Собирает все перекрёстные ссылки из текста SECTIONS.
+
+    Возвращает {(номер_объекта, форма_текста): имя_закладки}. Имена закладок
+    детерминированы, поэтому одинаковы в проходах с текстом и у рисунков.
+    """
+    names = {}
+    counters = {}
+
+    def visit(text):
+        for match in XREF_RE.finditer(text):
+            form = match.group(1)
+            number = _ref_number(form)
+            if number is None:
+                continue
+            key = (number, form)
+            if key not in names:
+                counters[number] = counters.get(number, 0) + 1
+                names[key] = '_Xr%d_%d' % (number, counters[number])
+
+    for block in sections:
+        kind = block[0]
+        if kind in ('p', 'pb'):
+            visit(block[1])
+        elif kind == 'list':
+            for item in block[1]:
+                visit(item)
+        elif kind == 'refs':
+            for item in block[1]:
+                visit(item)
+    return names
+
+
+def figures_targets(xrefs):
+    """{(номер, форма): имя} -> {номер: [(форма, имя), ...]} для вставки закладок."""
+    by_number = {}
+    for (number, form), name in sorted(xrefs.items(), key=lambda kv: kv[1]):
+        by_number.setdefault(number, []).append((form, name))
+    return by_number
+
+
+# ------------------------------------------------------------ стили титула
+_TITLE_INDEX = {}
+_TITLE_STYLES = {}
+
+
+def _title_spec(line):
+    return {
+        'align': line.get('al', 'center'),
+        'bold': bool(line.get('b')),
+        'size': line.get('sz', PAGE['body_size']),
+        'mt': 6.2 if line.get('tight') else 12.0,   # 0.219 / 0.423 см из Gentoo.odt
+        'mb': 6.2 if line.get('tight') else 12.0,
+    }
+
+
+def title_style_name(line):
+    spec = _title_spec(line)
+    key = tuple(sorted(spec.items()))
+    if key not in _TITLE_INDEX:
+        name = 'Title%d' % (len(_TITLE_INDEX) + 1)
+        _TITLE_INDEX[key] = name
+        _TITLE_STYLES[name] = spec
+    return _TITLE_INDEX[key]
 
 
 # --------------------------------------------------------------------- стили
@@ -203,8 +264,8 @@ def make_styles(doc):
                    break_before=True, master='Standard'))
     # --- рисунки и таблицы
     add('FigPara', text_props(PAGE['body_size']),
-        para_props(align='center', indent=0, before=6, line_height=100,
-                   keep_next=True))
+        para_props(align='center', indent=0, before=6, after=blank,
+                   line_height=100))
     add('FigCaption', text_props(PAGE['body_size']),
         para_props(align='center', indent=0, before=6, after=blank))
     add('TabCaption', text_props(PAGE['body_size']),
@@ -235,6 +296,34 @@ def make_styles(doc):
         para_props(align='center', indent=0, after=6, line_height=100))
     add('FootP', text_props(PAGE['body_size']),
         para_props(align='center', indent=0, line_height=100))
+
+    # --- невидимые якоря перекрёстных ссылок на рисунки: подпись «Рисунок N –
+    #     Название» вписана в изображение, поэтому для поля-ссылки в тексте
+    #     рядом с рамкой хранится невидимый текст в нужной форме («рисунок N»),
+    #     обёрнутый в закладку; по нему строится перекрёстная ссылка.
+    hidden = Style(name='Hidden', family='text')
+    hidden.addElement(with_attrs(TextProperties(), {
+        'fo:font-size': '1.00pt', 'style:font-size-asian': '1.00pt',
+        'style:font-size-complex': '1.00pt', 'fo:color': '#ffffff',
+    }))
+    doc.styles.addElement(hidden)
+
+    # --- строки титульного листа (оформление по образцу Gentoo.odt)
+    for line in content.TITLE:
+        title_style_name(line)
+    for name, spec in _TITLE_STYLES.items():
+        style = Style(name=name, family='paragraph')
+        style.addElement(text_props(spec['size'], bold=spec['bold']))
+        style.addElement(with_attrs(ParagraphProperties(), {
+            'fo:text-align': spec['align'],
+            'fo:text-indent': '0cm',
+            'fo:margin-top': pt(spec['mt']),
+            'fo:margin-bottom': pt(spec['mb']),
+            'fo:line-height': '100%',
+            'fo:orphans': '2',
+            'fo:widows': '2',
+        }))
+        doc.styles.addElement(style)
 
     # --- ячейки таблиц
     cell_text = text_props(PAGE['table_size'])
@@ -296,8 +385,8 @@ def make_styles(doc):
 def build_document(page_map=None, page_count=None, path=None, table_breaks=None):
     """Собирает ODT. page_map — {(уровень, заголовок): страница}."""
     from odf.opendocument import OpenDocumentText
-    from odf.text import (P, Tab, BookmarkStart, BookmarkEnd, BookmarkRef,
-                          PageCount)
+    from odf.text import (P, Tab, Span, LineBreak, BookmarkStart, BookmarkEnd,
+                          BookmarkRef, PageCount)
     from odf.dc import Title as MetaTitle, Creator
     from odf.draw import Frame, Image as DrawImage
     from odf.table import Table, TableColumn, TableRow, TableCell
@@ -329,28 +418,44 @@ def build_document(page_map=None, page_count=None, path=None, table_breaks=None)
                 headings.append((2 if kind == 'h2' else 1, block[1], name))
     heading_iter = iter(all_names)
 
+    # --- перекрёстные ссылки на рисунки: {(номер, форма): закладка}
+    xrefs = collect_xrefs(content.SECTIONS)
+    fig_targets = figures_targets(xrefs)
+
+    def add_rich(p, text):
+        """Добавляет текст, превращая фрагменты [[...]] в поля-ссылки."""
+        pos = 0
+        for match in XREF_RE.finditer(text):
+            if match.start() > pos:
+                p.addText(text[pos:match.start()])
+            form = match.group(1)
+            name = xrefs.get((_ref_number(form), form))
+            ref = BookmarkRef(refname=name, referenceformat='text')
+            ref.addText(form)
+            p.addElement(ref)
+            pos = match.end()
+        if pos < len(text):
+            p.addText(text[pos:])
+        return p
+
     def add_par(text, style='Body'):
         p = P(stylename=style)
-        p.addText(text)
+        add_rich(p, text)
         body.addElement(p)
         return p
 
     # ------------------------------------------------------------ титульный лист
-    for i, line in enumerate(content.TITLE):
-        text = line['t']
-        if i == 0:
-            style = 'TitleFirst'
-        elif line.get('sz') == 18:
-            style = 'TitleBig'
-        elif line.get('sz') == 12:
-            style = 'TitleSmall'
-        elif line.get('b'):
-            style = 'TitleBold'
-        else:
-            style = 'TitleLine'
-        add_par(text, style=style)
-        for _ in range(int(round(line.get('gap', 0) / 18.0))):   # пустые строки-отбивки
-            add_par('', style='TitleLine')
+    for line in content.TITLE:
+        style = title_style_name(line)
+        p = P(stylename=style)
+        parts = line['t'].split('\n')
+        p.addText(parts[0])
+        for part in parts[1:]:
+            p.addElement(LineBreak())
+            p.addText(part)
+        body.addElement(p)
+        for _ in range(int(line.get('gap', 0))):       # пустые строки-отбивки
+            add_par('', style=style)
 
     # ------------------------------------------------------------------- текст
     for block in content.SECTIONS:
@@ -389,9 +494,11 @@ def build_document(page_map=None, page_count=None, path=None, table_breaks=None)
             add_par('')                       # пустая строка после вывода команды
         elif kind == 'fig':
             fig_no[0] += 1
-            path_img = os.path.join(SHOTS, block[1])
-            w, h = img_size(path_img, PAGE['img_width'], PAGE['img_max_height'],
-                            PAGE['img_min_dpi'])
+            path_img, w, h = figures.captioned(os.path.join(SHOTS, block[1]),
+                                               fig_no[0], block[2],
+                                               width_cm=PAGE['img_width'],
+                                               max_height_cm=PAGE['img_max_height'],
+                                               min_dpi=PAGE['img_min_dpi'])
             href = doc.addPictureFromFile(path_img)
             p = P(stylename='FigPara')
             frame = with_attrs(Frame(), {
@@ -404,8 +511,15 @@ def build_document(page_map=None, page_count=None, path=None, table_breaks=None)
             frame.addElement(DrawImage(href=href, type='simple', show='embed',
                                        actuate='onLoad'))
             p.addElement(frame)
+            # подпись вписана в изображение; для полей-ссылок в тексте рядом с
+            # рамкой размещаются невидимые якоря с формой «рисунок N».
+            for form, name in fig_targets.get(fig_no[0], []):
+                span = Span(stylename='Hidden')
+                span.addElement(BookmarkStart(name=name))
+                span.addText(form)
+                span.addElement(BookmarkEnd(name=name))
+                p.addElement(span)
             body.addElement(p)
-            add_par('Рисунок %d – %s' % (fig_no[0], block[2]), style='FigCaption')
         elif kind == 'table':
             spec = block[1]
             tab_no[0] += 1
@@ -446,7 +560,10 @@ def build_document(page_map=None, page_count=None, path=None, table_breaks=None)
         elif kind == 'toc':
             for level, text, name in headings:
                 p = P(stylename='TOC1' if level == 1 else 'TOC2')
-                p.addText(text)
+                # ссылка и на текст заголовка, и на номер страницы
+                ref_text = BookmarkRef(refname=name, referenceformat='text')
+                ref_text.addText(text)
+                p.addElement(ref_text)
                 p.addElement(Tab())
                 ref = BookmarkRef(refname=name, referenceformat='page')
                 ref.addText(str(page_map.get((level, text), '')))

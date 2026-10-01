@@ -472,17 +472,12 @@ def layout(items, ctx, start_page=1):
 
         if item.kind == 'img':
             x = (ctx.text_w - item.w) / 2.0
-            block = item.h + style.get('sb') + 0.0
-            nxt = items[i + 1] if i + 1 < len(items) and items[i + 1].kind == 'p' else None
-            if item.keep_next and nxt is not None:
-                cap_lh = ctx.line_height(nxt.style)
-                cap_lines = ctx.wrap(nxt.text, nxt.style)
-                block += len(cap_lines) * cap_lh + nxt.style.get('sa')
+            block = item.h + style.get('sb') + style.get('sa')
             page = pages[-1]
             if block > free(page) and free(page) < ctx.text_h - 1e-6:
                 page = new_page()
             y = ctx.mt + page.used + style.get('sb')
-            place(page, item, x, y, [], item.h + style.get('sb'))
+            place(page, item, x, y, [], block)
             i += 1
             continue
 

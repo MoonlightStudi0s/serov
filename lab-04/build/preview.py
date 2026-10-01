@@ -146,13 +146,29 @@ def build_pdf(odt_path, pdf_path):
                     continue
                 if '\t' in line:            # отточие и номер страницы в СОДЕРЖАНИИ
                     left, right = line.split('\t', 1)
+                    right = right.strip()
                     draw_text_run(x, baseline, left, style)
                     width = ctx.text_w - style.get('left', 0.0)
-                    draw_text_run(x, baseline, right.strip(), style,
+                    draw_text_run(x, baseline, right, style,
                                   width=width, align='right')
+                    # отточие между названием и номером страницы
+                    font = font_of(style)
+                    size_pt = style.get('font_size')
+                    start = x + ctx.text_width(left, style)
+                    end = x + width - ctx.text_width(right, style)
+                    dot_w = canvas.stringWidth('.', font, size_pt)
+                    count = int((end - start) / dot_w)
+                    if count > 0:
+                        canvas.setFont(font, size_pt)
+                        canvas.setFillColorRGB(0, 0, 0)
+                        canvas.drawString(start, baseline, '.' * count)
                     continue
                 if align == 'center':
                     draw_text_run(x, baseline, line, style, align='center')
+                elif align in ('end', 'right'):
+                    width = ctx.text_w - style.get('left', 0.0)
+                    draw_text_run(placed.x, baseline, line, style,
+                                  width=width, align='right')
                 else:
                     draw_text_run(x, baseline, line, style)
         canvas.showPage()
