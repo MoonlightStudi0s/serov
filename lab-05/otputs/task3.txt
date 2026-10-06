@@ -1,0 +1,55 @@
+calculate ~ # sudo rc-status
+ * Caching service dependencies ...                                       [ ok ]
+Runlevel: default
+ NetworkManager                                                    [  started  ]
+ consolefont                                                       [  started  ]
+ netmount                                                          [  started  ]
+ alsasound                                                         [  started  ]
+ bluetooth                                                         [  started  ]
+ chronyd                                                           [  started  ]
+ cronie                                                            [  started  ]
+ cupsd                                                             [  started  ]
+ fuse                                                              [  started  ]
+ numlock                                                           [  started  ]
+ sshd                                                              [  started  ]
+ local                                                             [  started  ]
+ agetty.tty2                                           [  started 01:27:58 (0) ]
+ agetty.tty4                                           [  started 01:27:58 (0) ]
+ agetty.tty1                                           [  started 01:27:58 (0) ]
+ agetty.tty3                                           [  started 01:27:58 (0) ]
+ agetty.tty5                                           [  started 01:27:58 (0) ]
+ agetty.tty6                                           [  started 01:27:58 (0) ]
+Dynamic Runlevel: hotplugged
+Dynamic Runlevel: needed/wanted
+ avahi-daemon                                                      [  started  ]
+ display-manager-setup                                             [  started  ]
+Dynamic Runlevel: manual
+calculate ~ # 
+
+
+---
+
+calculate ~ # sudo rc-service sshd status
+ * status: started
+
+---
+
+calculate ~ # sudo rc-service sshd stop
+sshd                      | * Stopping sshd ...                           [ ok ]
+calculate ~ # sudo rc-service sshd start
+sshd                      | * Starting sshd ...                           [ ok ]
+calculate ~ # 
+
+---
+
+calculate ~ # sudo rc-update add sshd default
+ * rc-update: sshd already installed in runlevel `default'; skipping
+calculate ~ # 
+
+---
+
+calculate ~ # sudo rc-update del sshd default
+ * service sshd deleted from runlevel default
+
+---
+

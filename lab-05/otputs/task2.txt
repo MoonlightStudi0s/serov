@@ -1,0 +1,149 @@
+calculate ~ # eix htop
+* sys-process/bashtop
+     Доступные версии:      ~0.9.25
+     Домашняя страница:     https://github.com/aristocratos/bashtop
+     Описание:              Resource monitor that shows usage and stats
+
+[I] sys-process/htop
+     Доступные версии:      3.4.1-r2 3.5.1 ~3.5.2 3.5.3 **9999*l {bfd caps debug delayacct +filecaps hwloc llvm-libunwind lm-sensors openvz unicode unwind vserver}
+     Установленные версии:  3.5.3(11:24:38 07.09.2026)(caps filecaps lm-sensors unicode -bfd -debug -delayacct -hwloc -llvm-libunwind -unwind)
+     Домашняя страница:     https://htop.dev/ https://github.com/htop-dev/htop
+     Описание:              Interactive process viewer
+
+Найдено 2 совпадение.
+
+
+---
+
+calculate ~ # emerge -a sys-process/htop
+[04b86392df50e34e2418bcaeda690f14] Local copy of remote index is within TTL and will be used.
+
+ * IMPORTANT: 46 news items need reading for repository 'gentoo'.
+ * Use eselect news read to view new items.
+
+
+These are the packages that would be merged, in order:
+
+Calculating dependencies ... done!
+Dependency resolution took 1.33 s (backtrack: 0/20).
+
+[binary   Rg   ] sys-process/htop-3.5.3 
+
+Would you like to merge these packages? [Yes/No] y
+
+>>> Emerging binary (1 of 1) sys-process/htop-3.5.3::gentoo
+--2026-10-06 18:38:40--  http://mirror.mephi.ru/calculate/grp/x86_64/sys-process/htop/htop-3.5.3-4.xpak
+Resolving mirror.mephi.ru (mirror.mephi.ru)... 85.143.112.112
+Connecting to mirror.mephi.ru (mirror.mephi.ru)|85.143.112.112|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 209307 (204K) [application/octet-stream]
+Saving to: ‘/var/calculate/packages/x86_64/sys-process/htop-3.5.3.tbz2.partial’
+
+/var/calculate/pack 100%[===================>] 204.40K  --.-KB/s    in 0.1s    
+
+2026-10-06 18:38:41 (1.55 MB/s) - ‘/var/calculate/packages/x86_64/sys-process/htop-3.5.3.tbz2.partial’ saved [209307/209307]
+
+ * htop-3.5.3.tbz2 MD5 SHA1 size ;-) ...                                 [ ok ]
+>>> Extracting info
+ * Determining the location of the kernel source code
+ * Found kernel source directory:
+ *     /usr/src/linux
+ * Found kernel object directory:
+ *     /usr/src/linux-6.18.51-calculate
+ * Found sources for kernel version:
+ *     6.18.51-calculate
+ * Checking for suitable kernel configuration options ...                [ ok ]
+>>> Extracting sys-process/htop-3.5.3
+
+>>> Installing (1 of 1) sys-process/htop-3.5.3::gentoo
+ * Updating .desktop files database ...                                  [ ok ]
+ * Updating icons cache ...                                              [ ok ]
+ * Конфигурация утилитами Calculate системных настроек htop ...
+ * Утилиты Calculate изменили файлы:
+ *      /usr/share/applications/htop.desktop
+ * Утилиты Calculate изменили файлы:
+ *      /home/lerner/.calculate/ini.env
+ * Updating .desktop files database ...                                  [ ok ]
+ * Updating icons cache ...                                              [ ok ]
+ * Install additional packages for optional runtime features:
+ *   dev-debug/strace for Tracing system calls and signals of processes
+
+>>> Completed (1 of 1) sys-process/htop-3.5.3::gentoo
+
+ * Messages for package sys-process/htop-3.5.3:
+
+ * Install additional packages for optional runtime features:
+ *   dev-debug/strace for Tracing system calls and signals of processes
+>>> Auto-cleaning packages...
+
+>>> No outdated packages were found on your system.
+
+ * GNU info directory index is up-to-date.
+
+ * IMPORTANT: 46 news items need reading for repository 'gentoo'.
+ * Use eselect news read to view new items.
+
+calculate ~ # 
+
+
+
+
+---
+
+---
+
+calculate ~ # emerge --unmerge sys-process/htop
+ * This action can remove important packages! In order to be safer, use
+ * `emerge -pv --depclean <atom>` to check for reverse dependencies before
+ * removing packages.
+
+ sys-process/htop
+    selected: 3.5.3 
+   protected: none 
+     omitted: none 
+
+All selected packages: =sys-process/htop-3.5.3
+
+>>> 'Selected' packages are slated for removal.
+>>> 'Protected' and 'omitted' packages will not be removed.
+
+>>> Waiting 5 seconds before starting...
+>>> (Control-C to abort)...
+>>> Unmerging in: 5 4 3 2 1
+>>> Unmerging (1 of 1) sys-process/htop-3.5.3...
+
+ * GNU info directory index is up-to-date.
+
+ * IMPORTANT: 46 news items need reading for repository 'gentoo'.
+ * Use eselect news read to view new items.
+
+calculate ~ # 
+
+---
+
+calculate ~ # sudo emerge --depclean
+
+ * Always study the list of packages to be cleaned for any obvious
+ * mistakes. Packages that are part of the world set will always
+ * be kept.  They can be manually added to this set with
+ * `emerge --noreplace <atom>`.  Packages that are listed in
+ * package.provided (see portage(5)) will be removed by
+ * depclean, even if they are part of the world set.
+ * 
+ * As a safety measure, depclean will not remove any packages
+ * unless *all* required dependencies have been resolved.  As a
+ * consequence of this, it often becomes necessary to run 
+ * `emerge --update --newuse --deep @world` prior to depclean.
+
+Calculating dependencies ... done!
+>>> No packages selected for removal by depclean
+>>> To see reverse dependencies, use --verbose
+Packages installed:   1184
+Packages in world:    164
+Packages in system:   50
+Required packages:    1184
+Number removed:       0
+calculate ~ # 
+
+---
+

@@ -1,0 +1,91 @@
+calculate ~ # useradd --create-home --groups users,wheel,audio,cdrom,video,usb,plugdev,games,scanner,lp,lpadmin adminuser
+calculate ~ # 
+
+
+---
+
+calculate ~ # useradd --create-home --groups users,audio,cdrom,video,usb,plugdev,games,scanner,lp,lpadmin simpleuser
+calculate ~ # 
+
+
+---
+
+calculate ~ # passwd adminuser
+
+You can now choose the new password or passphrase.
+
+A good password should be a mix of upper and lower case letters, digits, and
+other characters.  You can use a password containing at least 8 characters.
+
+A passphrase should be of at least 3 words, 8 to 72 characters long, and
+contain enough different characters.
+
+Alternatively, if no one else can see your terminal now, you can pick this as
+your password: "molar_won9period".
+
+Enter new password: 
+Re-type new password: 
+passwd: пароль успешно обновлён
+calculate ~ # 
+
+calculate ~ # passwd simpleuser
+
+You can now choose the new password or passphrase.
+
+A good password should be a mix of upper and lower case letters, digits, and
+other characters.  You can use a password containing at least 8 characters.
+
+A passphrase should be of at least 3 words, 8 to 72 characters long, and
+contain enough different characters.
+
+Alternatively, if no one else can see your terminal now, you can pick this as
+your password: "sentry$Lay&Desire".
+
+Enter new password: 
+Re-type new password: 
+passwd: пароль успешно обновлён
+calculate ~ # 
+
+
+---
+
+
+calculate ~ # id adminuser
+uid=1001(adminuser) gid=1002(adminuser) группы=1002(adminuser),7(lp),10(wheel),18(audio),19(cdrom),27(video),85(usb),100(users),35(games),440(plugdev),441(scanner),106(lpadmin)
+calculate ~ # 
+
+calculate ~ # id simpleuser
+uid=1002(simpleuser) gid=1003(simpleuser) группы=1003(simpleuser),7(lp),18(audio),19(cdrom),27(video),85(usb),100(users),35(games),440(plugdev),441(scanner),106(lpadmin)
+calculate ~ # 
+
+
+---
+
+
+calculate ~ # su - simpleuser
+simpleuser@calculate ~ $ 
+
+
+simpleuser@calculate ~ $ sudo ls /root
+
+Мы полагаем, что ваш системный администратор изложил вам основы
+безопасности. Как правило, всё сводится к трём следующим правилам:
+
+    №1) Уважайте частную жизнь других.
+    №2) Думайте, прежде чем что-то вводить.
+    №3) С большой властью приходит большая ответственность.
+
+По соображениям безопасности пароль, который вы введёте, не будет виден.
+
+Пароль: 
+simpleuser отсутствует в файле sudoers.
+Администратор был оповещён об этом событии.
+simpleuser@calculate ~ $ 
+
+---
+
+adminuser@calculate ~ $ sudo ls /root
+Пароль: 
+
+---
+

@@ -1,0 +1,1079 @@
+calculate ~ # cl-update --sync-only
+Синхронизация репозиториев
+ * Проверка текущего сервера обновлений ...                               [ ok ]
+ * Проверка обновлений Distros ...                                        [ ok ]
+ * Проверка обновлений Calculate ...                                      [ ok ]
+ * Проверка обновлений Gentoo ...                                         [ ok ]
+ * Синхронизация завершена
+Конфигурация системы
+ * Сервер обновлений http://mirror.mephi.ru/calculate
+ * Синхронизация репозиториев завершена!
+calculate ~ # 
+
+---
+
+calculate ~ # cl-update
+Синхронизация репозиториев
+ * Проверка текущего сервера обновлений ...                               [ ok ]
+ * Проверка обновлений Distros ...                                        [ ok ]
+ * Проверка обновлений Calculate ...                                      [ ok ]
+ * Проверка обновлений Gentoo ...                                         [ ok ]
+ * Синхронизация завершена
+Конфигурация системы
+ * Сервер обновлений http://mirror.mephi.ru/calculate
+Обновление пакетов
+ * Вычисление зависимостей ...
+ * Список пакетов для установки  
+ * Протоколы доступности D-Bus и демон регистрации (rR) app-accessibility/at-spi2-core-2.58.8 (823 KiB)
+ * Утилита проверки и восстановления разделов диска + PhotoRec, программа для восстановления данных на основе электронной подписи (rR) app-admin/testdisk-7.2-r1 (476 KiB)
+ * Generic-purpose lossless compression algorithm (U) app-arch/brotli-1.2.0-r1 (579 KiB)
+ * Стандартный инструмент сжатия GNU (U) app-arch/gzip-1.14-r1 (171 KiB)
+ * Инструмент для обработки символической ссылки /usr/bin/pinentry (U) app-eselect/eselect-pinentry-0.7.5 (9 KiB)
+ * Практически полный комплект переводов справочных man-страниц (U) app-i18n/man-pages-l10n-4.31.0 (27373 KiB)
+ * Консольный мультиплексор (U) app-misc/tmux-3.6a (527 KiB)
+ * Полнофункциональный офисный пакет (rR) app-office/libreoffice-25.2.7.2-r1 (0 KiB)
+ * Набор сценариев для администрирования систем, работающих на Gentoo (U) app-portage/gentoolkit-0.8.1 (3373 KiB)
+ * Interpreter for the PostScript language and PDF (U) app-text/ghostscript-gpl-10.08.0 (22032 KiB)
+ * Библиотека синтаксического анализа для документов Abiword (U) app-text/libabw-0.1.4 (135 KiB)
+ * Библиотека синтаксического анализа для электронных книг различных форматов (U) app-text/libebook-0.1.4 (248 KiB)
+ * Библиотека для категоризации текста, основанная на N-gram модели (U) app-text/libexttextcat-3.4.8-r1 (0 KiB)
+ * Библиотека синтаксического анализа документов Microsoft Publisher (U) app-text/libmspub-0.1.5 (201 KiB)
+ * Библиотека синтаксического анализа ряда форматов текста, используемых в системах MAC, предшествовавших OSX (U) app-text/libmwaw-0.3.23 (3064 KiB)
+ * Библиотека для синтаксического анализа документов QuarkXpress (U) app-text/libqxp-0.0.3 (151 KiB)
+ * Library for rendering Postscript documents (rR) app-text/libspectre-0.2.12 (59 KiB)
+ * Import filter for old StarOffice documents (U) app-text/libstaroffice-0.0.8 (829 KiB)
+ * Simple thesaurus for LibreOffice (U) app-text/mythes-1.2.6 (22 KiB)
+ * Консольная утилита для структурного преобразования PDF-файлов с сохранением содержимого (U) app-text/qpdf-12.4.1-r1 (2230 KiB)
+ * Библиотека шаблонов C++ для линейной алгебры (U) dev-cpp/eigen-3.4.1-r1 (1093 KiB)
+ * Клиентская библиотека C++ для интерфейса веб-служб CMIS (U) dev-cpp/libcmis-0.6.3 (528 KiB)
+ * Чрезвычайно быстрая и компактная встроенная база данных типа "ключ-значение" (U) dev-db/lmdb-0.9.36 (165 KiB)
+ * Complete ODBC driver manager (U) dev-db/unixODBC-2.3.14 (492 KiB)
+ * Динамический компилятор для языка программирования Lua (U) dev-lang/luajit-2.1.1787165859 (412 KiB)
+ * Configuration file for dev-lang/python-exec (rR) dev-lang/python-exec-conf-2.4.6 (22 KiB)
+ * Собрание библиотек Boost для языка C++ (rR) dev-libs/boost-1.90.0-r2 (17073 KiB)
+ * Потоково-ориентированная библиотека синтаксического анализатора XML (U) dev-libs/expat-2.8.5 (301 KiB)
+ * Very low footprint JSON parser written in portable ANSI C (rR) dev-libs/json-parser-1.1.0_p20211208 (48 KiB)
+ * Tiny library providing a C "class" for working with arbitrary big byte sizes (rR) dev-libs/libbytesize-2.12 (46 KiB)
+ * Libraries providing APIs to netlink protocol based Linux kernel interfaces (rR) dev-libs/libnl-3.12.0 (818 KiB)
+ * Библиотека регулярных выражений, совместимая с Perl (U) dev-libs/libpcre2-10.49 (1937 KiB)
+ * Helper library for REVerse ENGineered formats filters (U) dev-libs/librevenge-0.0.6 (514 KiB)
+ * Синтаксический анализатор и инструментарий на языке С для работы с XML (rR) dev-libs/libxml2-2.15.3 (1431 KiB)
+ * Библиотеки и утилиты XSLT (rR) dev-libs/libxslt-1.1.45 (411 KiB)
+ * Библиотека разработчика интерфейса пользователя Newt; входит в состав пакетов RedHat (rR) dev-libs/newt-0.52.25-r2 (157 KiB)
+ * Official Khronos OpenCL ICD Loader (U) dev-libs/opencl-icd-loader-2025.07.22 (84 KiB)
+ * Robust, full-featured Open Source Toolkit for the Transport Layer Security (TLS) (U) dev-libs/openssl-3.5.8 (9344 KiB)
+ * Консольная утилита для подписи, проверки, шифрования и дешифрования XML (U) dev-libs/xmlsec-1.3.12 (0 KiB)
+ * Simple DNS resolver for asyncio (rR) dev-python/aiodns-4.0.4 (67 KiB)
+ * Happy Eyeballs for pre-resolved hosts (rR) dev-python/aiohappyeyeballs-2.7.1 (58 KiB)
+ * HTTP client/server for asyncio (U) dev-python/aiohttp-3.14.3-r1 (913 KiB)
+ * A list of registered asynchronous callbacks (rR) dev-python/aiosignal-1.4.0 (42 KiB)
+ * Compatibility layer for multiple asynchronous event loop implementations (rR) dev-python/anyio-4.14.2 (354 KiB)
+ * Attributes without boilerplate (rR) dev-python/attrs-26.1.0 (159 KiB)
+ * Bash style brace expansion for Python (rR) dev-python/bracex-3.0.1 (62 KiB)
+ * Привязка Python для библиотеки Brotli (U) dev-python/brotlicffi-1.2.0.2 (64 KiB)
+ * A certifi hack to use system trust store on Linux/FreeBSD (rR) dev-python/certifi-3024.7.22 (43 KiB)
+ * Foreign Function Interface, способ вызова C из Python (rR) dev-python/cffi-2.1.1 (332 KiB)
+ * The Real First Universal Charset Detector (U) dev-python/charset-normalizer-3.5.1 (166 KiB)
+ * Библиотека криптографических примитивов и наборов параметров (U) dev-python/cryptography-50.0.1 (1500 KiB)
+ * A CSS Cascading Style Sheets library (fork of cssutils) (rR) dev-python/css-parser-1.1.1 (380 KiB)
+ * Привязки Python для шины передачи системных сообщений D-Bus (rR) dev-python/dbus-python-1.4.0-r1 (169 KiB)
+ * Reliable machine-readable Linux distribution information for Python (rR) dev-python/distro-1.9.0 (70 KiB)
+ * Инструментарий DNS для языка Python (rR) dev-python/dnspython-2.8.0 (639 KiB)
+ * Emoji for Python (rR) dev-python/emoji-2.15.0 (506 KiB)
+ * Shared pip wheel for ensurepip Python module (rR) dev-python/ensurepip-pip-26.1.2 (1170 KiB)
+ * A list-like structure which implements collections.abc.MutableSequence (rR) dev-python/frozenlist-1.8.0 (82 KiB)
+ * Интерфейс на Python для фреймворка GStreamer (rR) dev-python/gst-python-1.26.11 (135 KiB)
+ * A pure-Python implementation of HTTP/1.1 inspired by hyper-h2 (rR) dev-python/h11-0.16.0 (101 KiB)
+ * HTTP/2 State-Machine based protocol implementation (rR) dev-python/h2-4.4.1 (160 KiB)
+ * Pure-Python HPACK header compression (rR) dev-python/hpack-4.2.0 (102 KiB)
+ * A minimal low-level HTTP client (rR) dev-python/httpcore-1.0.9-r1 (163 KiB)
+ * Fully-featured HTTP client which provides sync and async APIs (rR) dev-python/httpx-0.28.1-r1 (218 KiB)
+ * HTTP/2 framing layer for Python (rR) dev-python/hyperframe-6.1.0 (66 KiB)
+ * Internationalized Domain Names in Applications (IDNA) (U) dev-python/idna-3.19 (129 KiB)
+ * Classes used by other projects by developer jaraco (rR) dev-python/jaraco-classes-3.4.0 (48 KiB)
+ * Context managers by jaraco (rR) dev-python/jaraco-context-6.1.2 (51 KiB)
+ * Additional functions used by other projects by developer jaraco (rR) dev-python/jaraco-functools-4.6.0 (54 KiB)
+ * Text utilities used by other projects by developer jaraco (rR) dev-python/jaraco-text-4.3.0 (59 KiB)
+ * Low-level, pure Python DBus protocol wrapper (rR) dev-python/jeepney-0.9.0 (149 KiB)
+ * Provides access to the system keyring service (rR) dev-python/keyring-25.7.0 (121 KiB)
+ * Fork of the standard library cgi and cgitb modules (deprecated) (rR) dev-python/legacy-cgi-2.6.4 (73 KiB)
+ * Привязка Python для библиотек libxml2 и libxslt (U) dev-python/lxml-6.1.2 (1676 KiB)
+ * Шаблонный движок для Python (rR) dev-python/mako-1.4.1 (220 KiB)
+ * Реализация языка разметки Markdown для Python (rR) dev-python/markdown-3.10.3 (247 KiB)
+ * Реализация MarkupSafe-разметки XML/HTML/XHTML для Python (rR) dev-python/markupsafe-3.0.3 (57 KiB)
+ * More routines for operating on iterables, beyond itertools (rR) dev-python/more-itertools-11.1.0 (169 KiB)
+ * Реализация multidict (rR) dev-python/multidict-6.7.1 (117 KiB)
+ * Библиотека Python для использования сетей Jabber/XMPP без блокировки (U) dev-python/nbxmpp-7.4.0 (487 KiB)
+ * Python package to parse, read and write Microsoft OLE2 files (rR) dev-python/olefile-0.47 (105 KiB)
+ * OMEMO Crypto Library (rR) dev-python/omemo-dr-1.2.0 (199 KiB)
+ * Основные утилиты для работы с пакетами Python (rR) dev-python/packaging-26.3 (301 KiB)
+ * Python module for spawning child apps and responding to expected patterns (rR) dev-python/pexpect-4.9.0 (145 KiB)
+ * Графическая библиотека Python (форк) (rR) dev-python/pillow-12.3.0 (1020 KiB)
+ * A small Python module for determining appropriate platform-specific dirs (U) dev-python/platformdirs-4.11.5 (92 KiB)
+ * Библиотека Lex-Yacc для Python (rR) dev-python/ply-3.11-r2 (191 KiB)
+ * Internationalized Usernames and Passwords (rR) dev-python/precis-i18n-1.1.2 (78 KiB)
+ * Accelerated property cache (rR) dev-python/propcache-0.5.2 (80 KiB)
+ * Google's Protocol Buffers - Python bindings (rR) dev-python/protobuf-7.35.1 (535 KiB)
+ * Запуск подпроцесса в псевдо-терминале (rR) dev-python/ptyprocess-0.7.0-r2 (63 KiB)
+ * Библиотека ASN.1 для Python (rR) dev-python/pyasn1-0.6.4 (209 KiB)
+ * Модули pyasn1 (rR) dev-python/pyasn1-modules-0.4.2 (316 KiB)
+ * Привязки Python для библиотеки cairo (rR) dev-python/pycairo-1.29.1 (153 KiB)
+ * Python interface for c-ares (rR) dev-python/pycares-5.0.1 (100 KiB)
+ * Синтаксический анализатор и генератор AST для языка C; написан на Python (rR) dev-python/pycparser-3.0 (154 KiB)
+ * Привязки Python для API CUPS (rR) dev-python/pycups-2.0.4 (103 KiB)
+ * Привязки Python для GObject Introspection (rR) dev-python/pygobject-3.56.3 (414 KiB)
+ * Модуль Python, отвечающий за мониторинг событий файловых систем (rR) dev-python/pyinotify-0.9.6-r1 (93 KiB)
+ * Интерфейс к библиотеке OpenSSL; написан на языке Python (rR) dev-python/pyopenssl-26.4.0 (150 KiB)
+ * Кодер/декодер PNG-изображений на чистом Python (rR) dev-python/pypng-0.20220715.0 (115 KiB)
+ * Привязки Python для фреймворка Qt (rR) dev-python/pyqt6-6.11.0-r1 (3883 KiB)
+ * Sip module support for PyQt6 (rR) dev-python/pyqt6-sip-13.12.0 (92 KiB)
+ * Provides OpenPGP facilities using Sequoia-PGP library (N) dev-python/pysequoia-0.1.35 (2061 KiB)
+ * Клиентский модуль SOCKS (rR) dev-python/pysocks-1.7.1-r2 (72 KiB)
+ * Различные модули Python для работы с LDAP-сервером (rR) dev-python/python-ldap-3.4.7 (271 KiB)
+ * Определения часовых поясов мира для Python (rR) dev-python/pytz-2026.3_p1 (94 KiB)
+ * Синтаксический анализатор и генератор YAML под язык Python (rR) dev-python/pyyaml-6.0.3 (239 KiB)
+ * QR Code generator on top of PIL (rR) dev-python/qrcode-8.2 (141 KiB)
+ * Утилиты для импорта текстовых документов формата PDF из любых источников данных (rR) dev-python/reportlab-4.5.1 (2843 KiB)
+ * Удобная библиотека HTTP (rR) dev-python/requests-2.34.2 (191 KiB)
+ * Python bindings to FreeDesktop.org Secret Service API (rR) dev-python/secretstorage-3.5.0 (67 KiB)
+ * Набор расширений для инструментария Distutils (rR) dev-python/setuptools-84.0.0 (894 KiB)
+ * Manage versions by scm tags via setuptools (rR) dev-python/setuptools-scm-10.2.1 (87 KiB)
+ * Библиотека совместимости Python версий 2 и 3 (rR) dev-python/six-1.17.0 (67 KiB)
+ * Sniff out which async library your code is running under (rR) dev-python/sniffio-1.3.1 (44 KiB)
+ * Sans-I/O implementation of SOCKS4, SOCKS4A, and SOCKS5 (rR) dev-python/socksio-1.0.0 (64 KiB)
+ * Python SQL toolkit and Object Relational Mapper (rR) dev-python/sqlalchemy-2.0.52 (4090 KiB)
+ * Canonical source for classifiers on PyPI (pypi.org) (rR) dev-python/trove-classifiers-2026.6.1.19 (55 KiB)
+ * Verify certificates using native system trust stores (rR) dev-python/truststore-0.10.4 (76 KiB)
+ * Backported and Experimental Type Hints for Python 3.7+ (rR) dev-python/typing-extensions-4.16.0 (130 KiB)
+ * HTTP library with thread-safe connection pooling, file post, and more (rR) dev-python/urllib3-2.7.0 (298 KiB)
+ * Core VCS versioning functionality from setuptools-scm (U) dev-python/vcs-versioning-2.3.1 (260 KiB)
+ * Python API and shell utilities to monitor file system events (rR) dev-python/watchdog-6.0.0 (191 KiB)
+ * Формат собранного пакета для языка Python (rR) dev-python/wheel-0.48.0 (112 KiB)
+ * Альтернативная библиотека URL (rR) dev-python/yarl-1.24.5 (171 KiB)
+ * Qt module containing the unsupported Qt 5 APIs (U) dev-qt/qt5compat-6.11.2 (548 KiB)
+ * Кросс-платформенный инструментарий разработки ПО (U) dev-qt/qtbase-6.11.2-r2 (14438 KiB)
+ * Bluetooth and NFC support library for the Qt6 framework (U) dev-qt/qtconnectivity-6.11.2 (489 KiB)
+ * Qt Declarative (Quick 2) (U) dev-qt/qtdeclarative-6.11.2-r1 (18469 KiB)
+ * Плагины, обеспечивающие поддержку ввода и вывода дополнительных форматов изображений для фреймворка Qt (U) dev-qt/qtimageformats-6.11.2 (84 KiB)
+ * Implementation of the Language Server Protocol for Qt (U) dev-qt/qtlanguageserver-6.11.2 (395 KiB)
+ * Multimedia (audio, video, radio, camera) library for the Qt6 framework (U) dev-qt/qtmultimedia-6.11.2 (2154 KiB)
+ * Physical position determination library for the Qt6 framework (U) dev-qt/qtpositioning-6.11.2 (423 KiB)
+ * Qt module and API for defining 3D content in Qt QuickTools (U) dev-qt/qtquick3d-6.11.2 (7796 KiB)
+ * Qt module for keyframe-based timeline construction (U) dev-qt/qtquicktimeline-6.11.2 (103 KiB)
+ * Qt APIs and Tools for Graphics Pipelines (U) dev-qt/qtshadertools-6.11.2 (1936 KiB)
+ * SVG rendering library for the Qt6 framework (U) dev-qt/qtsvg-6.11.2 (317 KiB)
+ * Qt Tools Collection (U) dev-qt/qttools-6.11.2 (6104 KiB)
+ * Translation files for the Qt6 framework (U) dev-qt/qttranslations-6.11.2 (2016 KiB)
+ * Qt WebChannel (U) dev-qt/qtwebchannel-6.11.2 (158 KiB)
+ * Library for rendering dynamic web content in Qt6 C++ and QML applications (U) dev-qt/qtwebengine-6.11.2 (88855 KiB)
+ * Qt6 Configuration Tool (for DE/WM without Qt integration) (rR) gui-apps/qt6ct-0.11 (206 KiB)
+ * Framework providing assorted high-level user interface components (U) kde-frameworks/kguiaddons-6.29.0-r1 (206 KiB)
+ * Framework providing access to properties and features of the window manager (U) kde-frameworks/kwindowsystem-6.29.0 (302 KiB)
+ * Meta-ebuild for clang runtime libraries (U) llvm-runtimes/clang-runtime-22-r1 (23 KiB)
+ * EXIF, IPTC and XMP metadata C++ library and command line utility (U) media-gfx/exiv2-0.28.9 (4145 KiB)
+ * Растровый графический редактор (rR) media-gfx/gimp-3.2.4 (22953 KiB)
+ * Коллекция утилит и библиотек для различных форматов изображений (U) media-gfx/imagemagick-7.1.2.32 (8988 KiB)
+ * Просмотрщик изображений на движке Qt (U) media-gfx/nomacs-3.22.0 (1952 KiB)
+ * Библиотека продвинутой звуковой архитектуры Linux (ALSA) (U) media-libs/alsa-lib-1.2.16.1 (961 KiB)
+ * ALSA ucm configuration files (U) media-libs/alsa-ucm-conf-1.2.16.1 (130 KiB)
+ * Dav1d, декодер AV1 (U) media-libs/dav1d-1.5.4 (980 KiB)
+ * Библиотека для конфигурирования и настройки доступа к шрифтам (U) media-libs/fontconfig-2.18.3 (691 KiB)
+ * Графическая библиотека для быстрого создания изображений (rR) media-libs/gd-2.3.3-r4 (296 KiB)
+ * Обёртка над библиотекой Exiv2, основанная на GObject (rR) media-libs/gexiv2-0.14.7 (147 KiB)
+ * Базовый комплект плагинов для GStreamer (N) media-libs/gst-plugins-good-1.26.11 (3477 KiB)
+ * Версия 2 улучшенной библиотеки, призванной заменить такие библиотеки как libXpm (rR) media-libs/imlib2-1.12.6 (802 KiB)
+ * Implementation of the codec specified in the JPEG-2000 Part-1 standard (rR) media-libs/jasper-4.2.4 (457 KiB)
+ * Открытый кодек HEVC (U) media-libs/kvazaar-2.3.2 (527 KiB)
+ * Библиотека для отображения субтитров SSA/ASS (U) media-libs/libass-0.17.5 (259 KiB)
+ * Библиотека синтаксического анализа файлов Corel (.cdr) (U) media-libs/libcdr-0.1.9 (441 KiB)
+ * Реализация видеокодека h.265 с открытым программным кодом (U) media-libs/libde265-1.1.3 (447 KiB)
+ * Библиотека утилит для навигации по DVD-диску (U) media-libs/libdvdnav-7.0.0 (131 KiB)
+ * Библиотека утилит для навигации по DVD-диску (U) media-libs/libdvdread-7.0.1 (165 KiB)
+ * Библиотека, обеспечивающая импорт изображений FreeHand (U) media-libs/libfreehand-0.1.3 (290 KiB)
+ * ISO/IEC 23008-12:2017 HEIF file format decoder and encoder (U) media-libs/libheif-1.23.5 (1922 KiB)
+ * Мультимедийная библиотека SDL (U) media-libs/libsdl3-3.4.16 (2789 KiB)
+ * Library parsing the file format of MS Visio documents (U) media-libs/libvisio-0.1.11 (329 KiB)
+ * Library for reading vector images in Microsoft's Windows Metafile Format (WMF) (U) media-libs/libwmf-0.2.15-r1 (176 KiB)
+ * Набор различных алгоритмов компьютерного зрения и примеров кода (rR) media-libs/opencv-4.12.0-r1 (24752 KiB)
+ * Free library for encoding X264/AVC streams (U) media-libs/x264-0.0.20240513-r1 (1038 KiB)
+ * PNG image encoder/decoder plugin for GStreamer (N) media-plugins/gst-plugins-libpng-1.26.11 (60 KiB)
+ * Утилиты продвинутой звуковой архитектуры ALSA (alsactl, alsamixer и др.) (U) media-sound/alsa-utils-1.2.16 (1228 KiB)
+ * Media player for the command line (rR) media-video/mpv-0.41.0-r2 (1736 KiB)
+ * Отличный графический фронтенд для Mplayer, написанный на Qt (rR) media-video/smplayer-25.6.0_p20250903-r1 (3630 KiB)
+ * Berkeley Internet Name Domain - Name Server (U) net-dns/bind-9.20.29 (2105 KiB)
+ * Небольшой ретранслирующий DNS-сервер (U) net-dns/dnsmasq-2.93 (544 KiB)
+ * Linux kernel firewall, NAT and packet mangling tools (rR) net-firewall/nftables-1.1.6 (489 KiB)
+ * GTK XMPP Client (U) net-im/gajim-2.6.0 (4058 KiB)
+ * Свободная реализация протокола удалённого рабочего стола (RDP) (U) net-misc/freerdp-3.32.0 (2642 KiB)
+ * Программа, выполняющая синхронизацию удалённых файлов (U) net-misc/rsync-3.5.1 (524 KiB)
+ * Реализация LDAP и утилиты разработчика (rR) net-nds/openldap-2.6.13 (2272 KiB)
+ * BitTorrent-клиент, основанный на языке C++ и Qt (U) net-p2p/qbittorrent-5.1.4-r1 (6143 KiB)
+ * Стандартный сервер печати для Unix-подобных систем (rR) net-print/cups-2.4.19 (5852 KiB)
+ * Library for developing printing features, split out of cups-filters (rR) net-print/libcupsfilters-2.1.1-r1 (642 KiB)
+ * Надёжное и , совместимое со многими операционными системами (U) net-vpn/openvpn-2.7.5 (665 KiB)
+ * Набор Calculate утилит для установки, сборки и обновления системы (U) sys-apps/calculate-utils-3.8.2.10 (4897 KiB)
+ * Identify a file's format by scanning binary data for patterns (rR) sys-apps/file-5.48 (1066 KiB)
+ * The package management and distribution system for Gentoo (U) sys-apps/portage-3.0.82.2 (3276 KiB)
+ * Утилиты для работы с учётными записями пользователей (U) sys-apps/shadow-4.20.2 (1482 KiB)
+ * Коллекция полезных утилит для работы в Linux (rR) sys-apps/util-linux-2.42.2 (5726 KiB)
+ * Утилиты, необходимые для сборки ПО (NS) sys-devel/binutils-2.47 (7763 KiB)
+ * Набор компиляторов GCC, разработанный в рамках проекта GNU (NS) sys-devel/gcc-16.2.1_p20260926 (106682 KiB)
+ * Userspace utilities for the exFAT filesystem (U) sys-fs/exfatprogs-1.4.3 (129 KiB)
+ * Интерфейс для файловых систем  в пользовательском пространстве (U) sys-fs/fuse-3.18.3 (261 KiB)
+ * Открытый драйвер NTFS, обеспечивающий запись и чтение в пользовательском пространстве (FUSE) (U) sys-fs/ntfs3g-2026.9.28 (634 KiB)
+ * Библиотека libc GNU для языка C (U) sys-libs/glibc-2.43-r4 (0 KiB)
+ * Library for manipulating block devices (U) sys-libs/libblockdev-3.5.0 (297 KiB)
+ * Мандаты доступа POSIX 1003.1e (rR) sys-libs/libcap-ng-0.9.3 (106 KiB)
+ * C Library for NVM Express on Linux (rR) sys-libs/libnvme-1.16.2 (266 KiB)
+ * High level interface to Linux seccomp filter (rR) sys-libs/libseccomp-2.6.1 (218 KiB)
+ * Виртуальный пакет для контроля доступа ACL (sys/acl.h) (U) virtual/acl-2.4.0 (18 KiB)
+ * Виртуальный пакет API провайдера Secret Service от freedesktop.org (U) virtual/secret-service-0-r2 (9 KiB)
+ * Виртуальный пакет для выбора обработчика tmpfiles.d (U) virtual/tmpfiles-0-r7 (9 KiB)
+ * Интернет-браузер от компании Google (N) www-client/google-chrome-154.0.8037.57 (157639 KiB)
+ * 206 пакетов будет установлено, 676895 KiB будет загружено
+
+Вы хотите установить эти пакеты? (Yes/No): yes
+ * Получение пакетов ...                                                  [ ok ]
+ * Получение бинарных пакетов ...                                         [ ok ]
+ * (1 из 206) Библиотека libc GNU для языка C
+ * Сборка sys-libs/glibc-2.43-r4 ...                                      [ ok ]
+ * Установка sys-libs/glibc-2.43-r4 [2.43-r2] ...                         [ ok ]
+ * (2 из 206) Потоково-ориентированная библиотека синтаксического анализатора XML
+ * Сборка dev-libs/expat-2.8.5 ...                                        [ ok ]
+ * Установка dev-libs/expat-2.8.5 [2.8.4] ...                             [ ok ]
+ * (3 из 206) Мандаты доступа POSIX 1003.1e
+ * Сборка sys-libs/libcap-ng-0.9.3 ...                                    [ ok ]
+ * Установка sys-libs/libcap-ng-0.9.3 ...                                 [ ok ]
+ * (4 из 206) Dav1d, декодер AV1
+ * Сборка media-libs/dav1d-1.5.4 ...                                      [ ok ]
+ * Установка media-libs/dav1d-1.5.4 [1.5.1] ...                           [ ok ]
+ * (5 из 206) Free library for encoding X264/AVC streams
+ * Сборка media-libs/x264-0.0.20240513-r1 ...                             [ ok ]
+ * Установка media-libs/x264-0.0.20240513-r1 [0.0.20240513] ...           [ ok ]
+ * (6 из 206) High level interface to Linux seccomp filter
+ * Сборка sys-libs/libseccomp-2.6.1 ...                                   [ ok ]
+ * Установка sys-libs/libseccomp-2.6.1 ...                                [ ok ]
+ * (7 из 206) Configuration file for dev-lang/python-exec
+ * Сборка dev-lang/python-exec-conf-2.4.6 ...                             [ ok ]
+ * Установка dev-lang/python-exec-conf-2.4.6 ...                          [ ok ]
+ * (8 из 206) ALSA ucm configuration files
+ * Сборка media-libs/alsa-ucm-conf-1.2.16.1 ...                           [ ok ]
+ * Установка media-libs/alsa-ucm-conf-1.2.16.1 [1.2.15.3] ...             [ ok ]
+ * (9 из 206) Реализация видеокодека h.265 с открытым программным кодом
+ * Сборка media-libs/libde265-1.1.3 ...                                   [ ok ]
+ * Установка media-libs/libde265-1.1.3 [1.0.16] ...                       [ ok ]
+ * (10 из 206) Открытый кодек HEVC
+ * Сборка media-libs/kvazaar-2.3.2 ...                                    [ ok ]
+ * Установка media-libs/kvazaar-2.3.2 [2.3.0-r1] ...                      [ ok ]
+ * (11 из 206) Translation files for the Qt6 framework
+ * Сборка dev-qt/qttranslations-6.11.2 ...                                [ ok ]
+ * Установка dev-qt/qttranslations-6.11.2 [6.11.1] ...                    [ ok ]
+ * (12 из 206) Official Khronos OpenCL ICD Loader
+ * Сборка dev-libs/opencl-icd-loader-2025.07.22 ...                       [ ok ]
+ * Установка dev-libs/opencl-icd-loader-2025.07.22 [2024.10.24] ...       [ ok ]
+ * (13 из 206) Библиотека для категоризации текста, основанная на N-gram модели
+ * Сборка app-text/libexttextcat-3.4.8-r1 ...                             [ ok ]
+ * (14 из 206) Чрезвычайно быстрая и компактная встроенная база данных типа "ключ-значение"
+ * Сборка dev-db/lmdb-0.9.36 ...                                          [ ok ]
+ * (15 из 206) Динамический компилятор для языка программирования Lua
+ * Сборка dev-lang/luajit-2.1.1787165859 ...                              [ ok ]
+ * (16 из 206) Libraries providing APIs to netlink protocol based Linux kernel interfaces
+ * Сборка dev-libs/libnl-3.12.0 ...                                       [ ok ]
+ * (17 из 206) Библиотека шаблонов C++ для линейной алгебры
+ * Сборка dev-cpp/eigen-3.4.1-r1 ...                                      [ ok ]
+ * (18 из 206) Very low footprint JSON parser written in portable ANSI C
+ * Сборка dev-libs/json-parser-1.1.0_p20211208 ...                        [ ok ]
+ * (19 из 206) Robust, full-featured Open Source Toolkit for the Transport Layer Security (TLS)
+ * Сборка dev-libs/openssl-3.5.8 ...                                      [ ok ]
+ * Установка app-text/libexttextcat-3.4.8-r1 [3.4.7] ...                  [ ok ]
+ * Установка dev-lang/luajit-2.1.1787165859 [2.1.1780076327] ...          [ ok ]
+ * Установка dev-db/lmdb-0.9.36 [0.9.35] ...                              [ ok ]
+ * Установка dev-libs/libnl-3.12.0 ...                                    [ ok ]
+ * Установка dev-cpp/eigen-3.4.1-r1 [3.4.0-r3] ...                        [ ok ]
+ * Установка dev-libs/json-parser-1.1.0_p20211208 ...                     [ ok ]
+ * Установка dev-libs/openssl-3.5.8 [3.5.7] ...                           [ ok ]
+ * (20 из 206) Библиотека продвинутой звуковой архитектуры Linux (ALSA)
+ * Сборка media-libs/alsa-lib-1.2.16.1 ...                                [ ok ]
+ * Установка media-libs/alsa-lib-1.2.16.1 [1.2.15.3] ...                  [ ok ]
+ * (21 из 206) Виртуальный пакет для контроля доступа ACL (sys/acl.h)
+ * Сборка virtual/acl-2.4.0 ...                                           [ ok ]
+ * Установка virtual/acl-2.4.0 [0-r2] ...                                 [ ok ]
+ * (22 из 206) Библиотека утилит для навигации по DVD-диску
+ * Сборка media-libs/libdvdread-7.0.1 ...                                 [ ok ]
+ * Установка media-libs/libdvdread-7.0.1 [6.1.3] ...                      [ ok ]
+ * (23 из 206) Библиотека утилит для навигации по DVD-диску
+ * Сборка media-libs/libdvdnav-7.0.0 ...                                  [ ok ]
+ * Установка media-libs/libdvdnav-7.0.0 [6.1.1] ...                       [ ok ]
+ * (24 из 206) Стандартный инструмент сжатия GNU
+ * Сборка app-arch/gzip-1.14-r1 ...                                       [ ok ]
+ * (25 из 206) Helper library for REVerse ENGineered formats filters
+ * Сборка dev-libs/librevenge-0.0.6 ...                                   [ ok ]
+ * (26 из 206) EXIF, IPTC and XMP metadata C++ library and command line utility
+ * Сборка media-gfx/exiv2-0.28.9 ...                                      [ ok ]
+ * (27 из 206) Консольная утилита для структурного преобразования PDF-файлов с сохранением содержимого
+ * Сборка app-text/qpdf-12.4.1-r1 ...                                     [ ok ]
+ * (28 из 206) Complete ODBC driver manager
+ * Сборка dev-db/unixODBC-2.3.14 ...                                      [ ok ]
+ * (29 из 206) Утилиты продвинутой звуковой архитектуры ALSA (alsactl, alsamixer и др.)
+ * Сборка media-sound/alsa-utils-1.2.16 ...                               [ ok ]
+ * (30 из 206) Библиотека регулярных выражений, совместимая с Perl
+ * Сборка dev-libs/libpcre2-10.49 ...                                     [ ok ]
+ * Установка app-arch/gzip-1.14-r1 [1.14] ...                             [ ok ]
+ * Установка dev-libs/librevenge-0.0.6 [0.0.5] ...                        [ ok ]
+ * Установка media-gfx/exiv2-0.28.9 [0.28.8] ...                          [ ok ]
+ * Установка app-text/qpdf-12.4.1-r1 [12.4.0] ...                         [ ok ]
+ * Установка dev-db/unixODBC-2.3.14 [2.3.12-r2] ...                       [ ok ]
+ * Установка media-sound/alsa-utils-1.2.16 [1.2.15.2] ...                 [ ok ]
+ * Установка dev-libs/libpcre2-10.49 [10.47] ...                          [ ok ]
+ * (31 из 206) Набор компиляторов GCC, разработанный в рамках проекта GNU
+ * Сборка sys-devel/gcc-16.2.1_p20260926 ...                              [ ok ]
+ * Установка sys-devel/gcc-16.2.1_p20260926 [15.3.0] ...                  [ ok ]
+ * (32 из 206) Identify a file's format by scanning binary data for patterns
+ * Сборка sys-apps/file-5.48 ...                                          [ ok ]
+ * Установка sys-apps/file-5.48 ...                                       [ ok ]
+ * (33 из 206) Библиотека синтаксического анализа документов Microsoft Publisher
+ * Сборка app-text/libmspub-0.1.5 ...                                     [ ok ]
+ * (34 из 206) Библиотека синтаксического анализа ряда форматов текста, используемых в системах MAC, предшествовавших OSX
+ * Сборка app-text/libmwaw-0.3.23 ...                                     [ ok ]
+ * (35 из 206) Библиотека для синтаксического анализа документов QuarkXpress
+ * Сборка app-text/libqxp-0.0.3 ...                                       [ ok ]
+ * (36 из 206) Import filter for old StarOffice documents
+ * Сборка app-text/libstaroffice-0.0.8 ...                                [ ok ]
+ * (37 из 206) Simple thesaurus for LibreOffice
+ * Сборка app-text/mythes-1.2.6 ...                                       [ ok ]
+ * (38 из 206) Консольный мультиплексор
+ * Сборка app-misc/tmux-3.6a ...                                          [ ok ]
+ * (39 из 206) Tiny library providing a C "class" for working with arbitrary big byte sizes
+ * Сборка dev-libs/libbytesize-2.12 ...                                   [ ok ]
+ * (40 из 206) Библиотека синтаксического анализа файлов Corel (.cdr)
+ * Сборка media-libs/libcdr-0.1.9 ...                                     [ ok ]
+ * (41 из 206) Библиотека, обеспечивающая импорт изображений FreeHand
+ * Сборка media-libs/libfreehand-0.1.3 ...                                [ ok ]
+ * (42 из 206) Инструмент для обработки символической ссылки /usr/bin/pinentry
+ * Сборка app-eselect/eselect-pinentry-0.7.5 ...                          [ ok ]
+ * Установка app-text/libmspub-0.1.5 [0.1.4] ...                          [ ok ]
+ * Установка app-text/libmwaw-0.3.23 [0.3.22] ...                         [ ok ]
+ * Установка app-text/libqxp-0.0.3 [0.0.2] ...                            [ ok ]
+ * Установка app-text/libstaroffice-0.0.8 [0.0.7] ...                     [ ok ]
+ * Установка app-text/mythes-1.2.6 [1.2.5] ...                            [ ok ]
+ * Установка app-misc/tmux-3.6a [3.5a] ...                                [ ok ]
+ * Установка dev-libs/libbytesize-2.12 ...                                [ ok ]
+ * Установка media-libs/libcdr-0.1.9 [0.1.8] ...                          [ ok ]
+ * Установка media-libs/libfreehand-0.1.3 [0.1.2-r2] ...                  [ ok ]
+ * Установка app-eselect/eselect-pinentry-0.7.5 [0.7.4] ...               [ ok ]
+ * (43 из 206) Коллекция полезных утилит для работы в Linux
+ * Сборка sys-apps/util-linux-2.42.2 ...                                  [ ok ]
+ * Установка sys-apps/util-linux-2.42.2 ...                               [ ok ]
+ * (44 из 206) Утилиты для работы с учётными записями пользователей
+ * Сборка sys-apps/shadow-4.20.2 ...                                      [ ok ]
+ * Установка sys-apps/shadow-4.20.2 [4.20.0] ...                          [ ok ]
+ * (45 из 206) Виртуальный пакет для выбора обработчика tmpfiles.d
+ * Сборка virtual/tmpfiles-0-r7 ...                                       [ ok ]
+ * Установка virtual/tmpfiles-0-r7 [0-r6] ...                             [ ok ]
+ * (46 из 206) Открытый драйвер NTFS, обеспечивающий запись и чтение в пользовательском пространстве (FUSE)
+ * Сборка sys-fs/ntfs3g-2026.9.28 ...                                     [ ok ]
+ * (47 из 206) Userspace utilities for the exFAT filesystem
+ * Сборка sys-fs/exfatprogs-1.4.3 ...                                     [ ok ]
+ * (48 из 206) Интерфейс для файловых систем  в пользовательском пространстве
+ * Сборка sys-fs/fuse-3.18.3 ...                                          [ ok ]
+ * Установка sys-fs/ntfs3g-2026.9.28 [2026.7.7] ...                       [ ok ]
+ * Установка sys-fs/exfatprogs-1.4.3 [1.4.2] ...                          [ ok ]
+ * Установка sys-fs/fuse-3.18.3 [3.18.2] ...                              [ ok ]
+ * (49 из 206) Надёжное и , совместимое со многими операционными системами
+ * Сборка net-vpn/openvpn-2.7.5 ...                                       [ ok ]
+ * (50 из 206) C Library for NVM Express on Linux
+ * Сборка sys-libs/libnvme-1.16.2 ...                                     [ ok ]
+ * (51 из 206) Практически полный комплект переводов справочных man-страниц
+ * Сборка app-i18n/man-pages-l10n-4.31.0 ...                              [ ok ]
+ * (52 из 206) Синтаксический анализатор и инструментарий на языке С для работы с XML
+ * Сборка dev-libs/libxml2-2.15.3 ...                                     [ ok ]
+ * Установка net-vpn/openvpn-2.7.5 [2.6.20-r1] ...                        [ ok ]
+ * Установка sys-libs/libnvme-1.16.2 ...                                  [ ok ]
+ * Установка dev-libs/libxml2-2.15.3 ...                                  [ ok ]
+ * Установка app-i18n/man-pages-l10n-4.31.0 [4.30.2] ...                  [ ok ]
+ * (53 из 206) Основные утилиты для работы с пакетами Python
+ * Сборка dev-python/packaging-26.3 ...                                   [ ok ]
+ * Установка dev-python/packaging-26.3 ...                                [ ok ]
+ * (54 из 206) Generic-purpose lossless compression algorithm
+ * Сборка app-arch/brotli-1.2.0-r1 ...                                    [ ok ]
+ * Установка app-arch/brotli-1.2.0-r1 [1.1.0] ...                         [ ok ]
+ * (55 из 206) Реализация языка разметки Markdown для Python
+ * Сборка dev-python/markdown-3.10.3 ...                                  [ ok ]
+ * Установка dev-python/markdown-3.10.3 ...                               [ ok ]
+ * (56 из 206) More routines for operating on iterables, beyond itertools
+ * Сборка dev-python/more-itertools-11.1.0 ...                            [ ok ]
+ * Установка dev-python/more-itertools-11.1.0 ...                         [ ok ]
+ * (57 из 206) Context managers by jaraco
+ * Сборка dev-python/jaraco-context-6.1.2 ...                             [ ok ]
+ * Установка dev-python/jaraco-context-6.1.2 ...                          [ ok ]
+ * (58 из 206) Shared pip wheel for ensurepip Python module
+ * Сборка dev-python/ensurepip-pip-26.1.2 ...                             [ ok ]
+ * Установка dev-python/ensurepip-pip-26.1.2 ...                          [ ok ]
+ * (59 из 206) Реализация MarkupSafe-разметки XML/HTML/XHTML для Python
+ * Сборка dev-python/markupsafe-3.0.3 ...                                 [ ok ]
+ * Установка dev-python/markupsafe-3.0.3 ...                              [ ok ]
+ * (60 из 206) A small Python module for determining appropriate platform-specific dirs
+ * Сборка dev-python/platformdirs-4.11.5 ...                              [ ok ]
+ * Установка dev-python/platformdirs-4.11.5 [4.11.3] ...                  [ ok ]
+ * (61 из 206) Canonical source for classifiers on PyPI (pypi.org)
+ * Сборка dev-python/trove-classifiers-2026.6.1.19 ...                    [ ok ]
+ * Установка dev-python/trove-classifiers-2026.6.1.19 ...                 [ ok ]
+ * (62 из 206) Bash style brace expansion for Python
+ * Сборка dev-python/bracex-3.0.1 ...                                     [ ok ]
+ * Установка dev-python/bracex-3.0.1 ...                                  [ ok ]
+ * (63 из 206) Internationalized Domain Names in Applications (IDNA)
+ * Сборка dev-python/idna-3.19 ...                                        [ ok ]
+ * (64 из 206) Собрание библиотек Boost для языка C++
+ * Сборка dev-libs/boost-1.90.0-r2 ...                                    [ ok ]
+ * (65 из 206) A certifi hack to use system trust store on Linux/FreeBSD
+ * Сборка dev-python/certifi-3024.7.22 ...                                [ ok ]
+ * (66 из 206) Библиотека ASN.1 для Python
+ * Сборка dev-python/pyasn1-0.6.4 ...                                     [ ok ]
+ * (67 из 206) A list-like structure which implements collections.abc.MutableSequence
+ * Сборка dev-python/frozenlist-1.8.0 ...                                 [ ok ]
+ * (68 из 206) Реализация multidict
+ * Сборка dev-python/multidict-6.7.1 ...                                  [ ok ]
+ * (69 из 206) Accelerated property cache
+ * Сборка dev-python/propcache-0.5.2 ...                                  [ ok ]
+ * (70 из 206) The Real First Universal Charset Detector
+ * Сборка dev-python/charset-normalizer-3.5.1 ...                         [ ok ]
+ * (71 из 206) Internationalized Usernames and Passwords
+ * Сборка dev-python/precis-i18n-1.1.2 ...                                [ ok ]
+ * (72 из 206) Verify certificates using native system trust stores
+ * Сборка dev-python/truststore-0.10.4 ...                                [ ok ]
+ * (73 из 206) Low-level, pure Python DBus protocol wrapper
+ * Сборка dev-python/jeepney-0.9.0 ...                                    [ ok ]
+ * (74 из 206) Linux kernel firewall, NAT and packet mangling tools
+ * Сборка net-firewall/nftables-1.1.6 ...                                 [ ok ]
+ * (75 из 206) Библиотека Lex-Yacc для Python
+ * Сборка dev-python/ply-3.11-r2 ...                                      [ ok ]
+ * (76 из 206) Библиотека совместимости Python версий 2 и 3
+ * Сборка dev-python/six-1.17.0 ...                                       [ ok ]
+ * (77 из 206) Определения часовых поясов мира для Python
+ * Сборка dev-python/pytz-2026.3_p1 ...                                   [ ok ]
+ * (78 из 206) Fork of the standard library cgi and cgitb modules (deprecated)
+ * Сборка dev-python/legacy-cgi-2.6.4 ...                                 [ ok ]
+ * (79 из 206) Модуль Python, отвечающий за мониторинг событий файловых систем
+ * Сборка dev-python/pyinotify-0.9.6-r1 ...                               [ ok ]
+ * (80 из 206) Запуск подпроцесса в псевдо-терминале
+ * Сборка dev-python/ptyprocess-0.7.0-r2 ...                              [ ok ]
+ * (81 из 206) Sip module support for PyQt6
+ * Сборка dev-python/pyqt6-sip-13.12.0 ...                                [ ok ]
+ * (82 из 206) Синтаксический анализатор и генератор YAML под язык Python
+ * Сборка dev-python/pyyaml-6.0.3 ...                                     [ ok ]
+ * (83 из 206) Happy Eyeballs for pre-resolved hosts
+ * Сборка dev-python/aiohappyeyeballs-2.7.1 ...                           [ ok ]
+ * (84 из 206) Attributes without boilerplate
+ * Сборка dev-python/attrs-26.1.0 ...                                     [ ok ]
+ * (85 из 206) Python package to parse, read and write Microsoft OLE2 files
+ * Сборка dev-python/olefile-0.47 ...                                     [ ok ]
+ * (86 из 206) A CSS Cascading Style Sheets library (fork of cssutils)
+ * Сборка dev-python/css-parser-1.1.1 ...                                 [ ok ]
+ * (87 из 206) Emoji for Python
+ * Сборка dev-python/emoji-2.15.0 ...                                     [ ok ]
+ * (88 из 206) Provides OpenPGP facilities using Sequoia-PGP library
+ * Сборка dev-python/pysequoia-0.1.35 ...                                 [ ok ]
+ * (89 из 206) Sans-I/O implementation of SOCKS4, SOCKS4A, and SOCKS5
+ * Сборка dev-python/socksio-1.0.0 ...                                    [ ok ]
+ * (90 из 206) Backported and Experimental Type Hints for Python 3.7+
+ * Сборка dev-python/typing-extensions-4.16.0 ...                         [ ok ]
+ * (91 из 206) Кодер/декодер PNG-изображений на чистом Python
+ * Сборка dev-python/pypng-0.20220715.0 ...                               [ ok ]
+ * (92 из 206) Google's Protocol Buffers - Python bindings
+ * Сборка dev-python/protobuf-7.35.1 ...                                  [ ok ]
+ * (93 из 206) Classes used by other projects by developer jaraco
+ * Сборка dev-python/jaraco-classes-3.4.0 ...                             [ ok ]
+ * (94 из 206) A pure-Python implementation of HTTP/1.1 inspired by hyper-h2
+ * Сборка dev-python/h11-0.16.0 ...                                       [ ok ]
+ * (95 из 206) Sniff out which async library your code is running under
+ * Сборка dev-python/sniffio-1.3.1 ...                                    [ ok ]
+ * (96 из 206) HTTP/2 framing layer for Python
+ * Сборка dev-python/hyperframe-6.1.0 ...                                 [ ok ]
+ * (97 из 206) Pure-Python HPACK header compression
+ * Сборка dev-python/hpack-4.2.0 ...                                      [ ok ]
+ * (98 из 206) Клиентский модуль SOCKS
+ * Сборка dev-python/pysocks-1.7.1-r2 ...                                 [ ok ]
+ * (99 из 206) Библиотека разработчика интерфейса пользователя Newt; входит в состав пакетов RedHat
+ * Сборка dev-libs/newt-0.52.25-r2 ...                                    [ ok ]
+ * (100 из 206) Reliable machine-readable Linux distribution information for Python
+ * Сборка dev-python/distro-1.9.0 ...                                     [ ok ]
+ * (101 из 206) Additional functions used by other projects by developer jaraco
+ * Сборка dev-python/jaraco-functools-4.6.0 ...                           [ ok ]
+ * Установка dev-python/idna-3.19 [3.18] ...                              [ ok ]
+ * Установка dev-python/certifi-3024.7.22 ...                             [ ok ]
+ * Установка dev-libs/boost-1.90.0-r2 ...                                 [ ok ]
+ * Установка dev-python/pyasn1-0.6.4 ...                                  [ ok ]
+ * Установка dev-python/frozenlist-1.8.0 ...                              [ ok ]
+ * Установка dev-python/multidict-6.7.1 ...                               [ ok ]
+ * Установка dev-python/propcache-0.5.2 ...                               [ ok ]
+ * Установка dev-python/charset-normalizer-3.5.1 [3.4.9] ...              [ ok ]
+ * Установка dev-python/precis-i18n-1.1.2 ...                             [ ok ]
+ * Установка dev-python/truststore-0.10.4 ...                             [ ok ]
+ * Установка dev-python/jeepney-0.9.0 ...                                 [ ok ]
+ * Установка net-firewall/nftables-1.1.6 ...                              [ ok ]
+ * Установка dev-python/ply-3.11-r2 ...                                   [ ok ]
+ * Установка dev-python/six-1.17.0 ...                                    [ ok ]
+ * Установка dev-python/pytz-2026.3_p1 ...                                [ ok ]
+ * Установка dev-python/legacy-cgi-2.6.4 ...                              [ ok ]
+ * Установка dev-python/pyinotify-0.9.6-r1 ...                            [ ok ]
+ * Установка dev-python/ptyprocess-0.7.0-r2 ...                           [ ok ]
+ * Установка dev-python/pyqt6-sip-13.12.0 ...                             [ ok ]
+ * Установка dev-python/pyyaml-6.0.3 ...                                  [ ok ]
+ * Установка dev-python/aiohappyeyeballs-2.7.1 ...                        [ ok ]
+ * Установка dev-python/attrs-26.1.0 ...                                  [ ok ]
+ * Установка dev-python/olefile-0.47 ...                                  [ ok ]
+ * Установка dev-python/css-parser-1.1.1 ...                              [ ok ]
+ * Установка dev-python/emoji-2.15.0 ...                                  [ ok ]
+ * Установка dev-python/pysequoia-0.1.35 ...                              [ ok ]
+ * Установка dev-python/socksio-1.0.0 ...                                 [ ok ]
+ * Установка dev-python/typing-extensions-4.16.0 ...                      [ ok ]
+ * Установка dev-python/pypng-0.20220715.0 ...                            [ ok ]
+ * Установка dev-python/protobuf-7.35.1 ...                               [ ok ]
+ * Установка dev-python/jaraco-classes-3.4.0 ...                          [ ok ]
+ * Установка dev-python/h11-0.16.0 ...                                    [ ok ]
+ * Установка dev-python/sniffio-1.3.1 ...                                 [ ok ]
+ * Установка dev-python/hyperframe-6.1.0 ...                              [ ok ]
+ * Установка dev-python/hpack-4.2.0 ...                                   [ ok ]
+ * Установка dev-python/pysocks-1.7.1-r2 ...                              [ ok ]
+ * Установка dev-libs/newt-0.52.25-r2 ...                                 [ ok ]
+ * Установка dev-python/distro-1.9.0 ...                                  [ ok ]
+ * Установка dev-python/jaraco-functools-4.6.0 ...                        [ ok ]
+ * (102 из 206) Программа, выполняющая синхронизацию удалённых файлов
+ * Сборка net-misc/rsync-3.5.1 ...                                        [ ok ]
+ * Установка net-misc/rsync-3.5.1 [3.4.4] ...                             [ ok ]
+ * (103 из 206) Шаблонный движок для Python
+ * Сборка dev-python/mako-1.4.1 ...                                       [ ok ]
+ * Установка dev-python/mako-1.4.1 ...                                    [ ok ]
+ * (104 из 206) Формат собранного пакета для языка Python
+ * Сборка dev-python/wheel-0.48.0 ...                                     [ ok ]
+ * Установка dev-python/wheel-0.48.0 ...                                  [ ok ]
+ * (105 из 206) Core VCS versioning functionality from setuptools-scm
+ * Сборка dev-python/vcs-versioning-2.3.1 ...                             [ ok ]
+ * Установка dev-python/vcs-versioning-2.3.1 [2.2.4] ...                  [ ok ]
+ * (106 из 206) Библиотеки и утилиты XSLT
+ * Сборка dev-libs/libxslt-1.1.45 ...                                     [ ok ]
+ * (107 из 206) HTTP/2 State-Machine based protocol implementation
+ * Сборка dev-python/h2-4.4.1 ...                                         [ ok ]
+ * (108 из 206) Compatibility layer for multiple asynchronous event loop implementations
+ * Сборка dev-python/anyio-4.14.2 ...                                     [ ok ]
+ * (109 из 206) Инструментарий DNS для языка Python
+ * Сборка dev-python/dnspython-2.8.0 ...                                  [ ok ]
+ * (110 из 206) Синтаксический анализатор и генератор AST для языка C; написан на Python
+ * Сборка dev-python/pycparser-3.0 ...                                    [ ok ]
+ * (111 из 206) Python API and shell utilities to monitor file system events
+ * Сборка dev-python/watchdog-6.0.0 ...                                   [ ok ]
+ * (112 из 206) Python module for spawning child apps and responding to expected patterns
+ * Сборка dev-python/pexpect-4.9.0 ...                                    [ ok ]
+ * (113 из 206) Модули pyasn1
+ * Сборка dev-python/pyasn1-modules-0.4.2 ...                             [ ok ]
+ * (114 из 206) A list of registered asynchronous callbacks
+ * Сборка dev-python/aiosignal-1.4.0 ...                                  [ ok ]
+ * (115 из 206) Альтернативная библиотека URL
+ * Сборка dev-python/yarl-1.24.5 ...                                      [ ok ]
+ * (116 из 206) Python SQL toolkit and Object Relational Mapper
+ * Сборка dev-python/sqlalchemy-2.0.52 ...                                [ ok ]
+ * (117 из 206) Библиотека синтаксического анализа для документов Abiword
+ * Сборка app-text/libabw-0.1.4 ...                                       [ ok ]
+ * (118 из 206) Клиентская библиотека C++ для интерфейса веб-служб CMIS
+ * Сборка dev-cpp/libcmis-0.6.3 ...                                       [ ok ]
+ * (119 из 206) Library parsing the file format of MS Visio documents
+ * Сборка media-libs/libvisio-0.1.11 ...                                  [ ok ]
+ * (120 из 206) HTTP library with thread-safe connection pooling, file post, and more
+ * Сборка dev-python/urllib3-2.7.0 ...                                    [ ok ]
+ * (121 из 206) Text utilities used by other projects by developer jaraco
+ * Сборка dev-python/jaraco-text-4.3.0 ...                                [ ok ]
+ * Установка dev-libs/libxslt-1.1.45 ...                                  [ ok ]
+ * Установка dev-python/h2-4.4.1 ...                                      [ ok ]
+ * Установка dev-python/anyio-4.14.2 ...                                  [ ok ]
+ * Установка dev-python/dnspython-2.8.0 ...                               [ ok ]
+ * Установка dev-python/pycparser-3.0 ...                                 [ ok ]
+ * Установка dev-python/watchdog-6.0.0 ...                                [ ok ]
+ * Установка dev-python/pexpect-4.9.0 ...                                 [ ok ]
+ * Установка dev-python/pyasn1-modules-0.4.2 ...                          [ ok ]
+ * Установка dev-python/aiosignal-1.4.0 ...                               [ ok ]
+ * Установка dev-python/yarl-1.24.5 ...                                   [ ok ]
+ * Установка dev-python/sqlalchemy-2.0.52 ...                             [ ok ]
+ * Установка app-text/libabw-0.1.4 [0.1.3-r1] ...                         [ ok ]
+ * Установка dev-cpp/libcmis-0.6.3 [0.6.2-r2] ...                         [ ok ]
+ * Установка media-libs/libvisio-0.1.11 [0.1.10] ...                      [ ok ]
+ * Установка dev-python/urllib3-2.7.0 ...                                 [ ok ]
+ * Установка dev-python/jaraco-text-4.3.0 ...                             [ ok ]
+ * (122 из 206) Привязка Python для библиотек libxml2 и libxslt
+ * Сборка dev-python/lxml-6.1.2 ...                                       [ ok ]
+ * (123 из 206) Консольная утилита для подписи, проверки, шифрования и дешифрования XML
+ * Сборка dev-libs/xmlsec-1.3.12 ...                                      [ ok ]
+ * (124 из 206) A minimal low-level HTTP client
+ * Сборка dev-python/httpcore-1.0.9-r1 ...                                [ ok ]
+ * (125 из 206) Небольшой ретранслирующий DNS-сервер
+ * Сборка net-dns/dnsmasq-2.93 ...                                        [ ok ]
+ * (126 из 206) Удобная библиотека HTTP
+ * Сборка dev-python/requests-2.34.2 ...                                  [ ok ]
+ * (127 из 206) Утилиты, необходимые для сборки ПО
+ * Сборка sys-devel/binutils-2.47 ...                                     [ ok ]
+ * Установка dev-python/lxml-6.1.2 [6.1.1] ...                            [ ok ]
+ * Установка dev-libs/xmlsec-1.3.12 [1.3.11-r1] ...                       [ ok ]
+ * Установка dev-python/httpcore-1.0.9-r1 ...                             [ ok ]
+ * Установка net-dns/dnsmasq-2.93 [2.92_p2] ...                           [ ok ]
+ * Установка dev-python/requests-2.34.2 ...                               [ ok ]
+ * Установка sys-devel/binutils-2.47 [2.46.1] ...                         [ ok ]
+ * (128 из 206) Fully-featured HTTP client which provides sync and async APIs
+ * Сборка dev-python/httpx-0.28.1-r1 ...                                  [ ok ]
+ * (129 из 206) Berkeley Internet Name Domain - Name Server
+ * Сборка net-dns/bind-9.20.29 ...                                        [ ok ]
+ * (130 из 206) Meta-ebuild for clang runtime libraries
+ * Сборка llvm-runtimes/clang-runtime-22-r1 ...                           [ ok ]
+ * Установка dev-python/httpx-0.28.1-r1 ...                               [ ok ]
+ * Установка net-dns/bind-9.20.29 [9.20.26] ...                           [ ok ]
+ * Установка llvm-runtimes/clang-runtime-22-r1 [22] ...                   [ ok ]
+ * (131 из 206) Реализация LDAP и утилиты разработчика
+ * Сборка net-nds/openldap-2.6.13 ...                                     [ ok ]
+ * (132 из 206) Привязки Python для шины передачи системных сообщений D-Bus
+ * Сборка dev-python/dbus-python-1.4.0-r1 ...                             [ ok ]
+ * Установка dev-python/dbus-python-1.4.0-r1 ...                          [ ok ]
+ * Установка net-nds/openldap-2.6.13 ...                                  [ ok ]
+ * (133 из 206) Различные модули Python для работы с LDAP-сервером
+ * Сборка dev-python/python-ldap-3.4.7 ...                                [ ok ]
+ * (134 из 206) Library for manipulating block devices
+ * Сборка sys-libs/libblockdev-3.5.0 ...                                  [ ok ]
+ * (135 из 206) Утилита проверки и восстановления разделов диска + PhotoRec, программа для восстановления данных на основе электронной подписи
+ * Сборка app-admin/testdisk-7.2-r1 ...                                   [ ok ]
+ * (136 из 206) Библиотека для конфигурирования и настройки доступа к шрифтам
+ * Сборка media-libs/fontconfig-2.18.3 ...                                [ ok ]
+ * Установка dev-python/python-ldap-3.4.7 ...                             [ ok ]
+ * Установка sys-libs/libblockdev-3.5.0 [3.4.0] ...                       [ ok ]
+ * Установка app-admin/testdisk-7.2-r1 ...                                [ ok ]
+ * Установка media-libs/fontconfig-2.18.3 [2.17.1] ...                    [ ok ]
+ * (137 из 206) Привязки Python для библиотеки cairo
+ * Сборка dev-python/pycairo-1.29.1 ...                                   [ ok ]
+ * Установка dev-python/pycairo-1.29.1 ...                                [ ok ]
+ * (138 из 206) Набор расширений для инструментария Distutils
+ * Сборка dev-python/setuptools-84.0.0 ...                                [ ok ]
+ * Установка dev-python/setuptools-84.0.0 ...                             [ ok ]
+ * (139 из 206) Manage versions by scm tags via setuptools
+ * Сборка dev-python/setuptools-scm-10.2.1 ...                            [ ok ]
+ * Установка dev-python/setuptools-scm-10.2.1 ...                         [ ok ]
+ * (140 из 206) Foreign Function Interface, способ вызова C из Python
+ * Сборка dev-python/cffi-2.1.1 ...                                       [ ok ]
+ * (141 из 206) Привязки Python для GObject Introspection
+ * Сборка dev-python/pygobject-3.56.3 ...                                 [ ok ]
+ * Установка dev-python/cffi-2.1.1 ...                                    [ ok ]
+ * Установка dev-python/pygobject-3.56.3 ...                              [ ok ]
+ * (142 из 206) Протоколы доступности D-Bus и демон регистрации
+ * Сборка app-accessibility/at-spi2-core-2.58.8 ...                       [ ok ]
+ * Установка app-accessibility/at-spi2-core-2.58.8 ...                    [ ok ]
+ * (143 из 206) Библиотека криптографических примитивов и наборов параметров
+ * Сборка dev-python/cryptography-50.0.1 ...                              [ ok ]
+ * (144 из 206) Привязка Python для библиотеки Brotli
+ * Сборка dev-python/brotlicffi-1.2.0.2 ...                               [ ok ]
+ * (145 из 206) Python interface for c-ares
+ * Сборка dev-python/pycares-5.0.1 ...                                    [ ok ]
+ * (146 из 206) Обёртка над библиотекой Exiv2, основанная на GObject
+ * Сборка media-libs/gexiv2-0.14.7 ...                                    [ ok ]
+ * (147 из 206) Библиотека для отображения субтитров SSA/ASS
+ * Сборка media-libs/libass-0.17.5 ...                                    [ ok ]
+ * Установка dev-python/cryptography-50.0.1 [50.0.0] ...                  [ ok ]
+ * Установка dev-python/brotlicffi-1.2.0.2 [1.2.0.1] ...                  [ ok ]
+ * Установка dev-python/pycares-5.0.1 ...                                 [ ok ]
+ * Установка media-libs/gexiv2-0.14.7 ...                                 [ ok ]
+ * Установка media-libs/libass-0.17.5 [0.17.4] ...                        [ ok ]
+ * (148 из 206) Графическая библиотека Python (форк)
+ * Сборка dev-python/pillow-12.3.0 ...                                    [ ok ]
+ * (149 из 206) Интерфейс к библиотеке OpenSSL; написан на языке Python
+ * Сборка dev-python/pyopenssl-26.4.0 ...                                 [ ok ]
+ * (150 из 206) Simple DNS resolver for asyncio
+ * Сборка dev-python/aiodns-4.0.4 ...                                     [ ok ]
+ * (151 из 206) OMEMO Crypto Library
+ * Сборка dev-python/omemo-dr-1.2.0 ...                                   [ ok ]
+ * (152 из 206) Python bindings to FreeDesktop.org Secret Service API
+ * Сборка dev-python/secretstorage-3.5.0 ...                              [ ok ]
+ * (153 из 206) Библиотека синтаксического анализа для электронных книг различных форматов
+ * Сборка app-text/libebook-0.1.4 ...                                     [ ok ]
+ * (154 из 206) Стандартный сервер печати для Unix-подобных систем
+ * Сборка net-print/cups-2.4.19 ...                                       [ ok ]
+ * Установка dev-python/pillow-12.3.0 ...                                 [ ok ]
+ * Установка dev-python/pyopenssl-26.4.0 ...                              [ ok ]
+ * Установка dev-python/aiodns-4.0.4 ...                                  [ ok ]
+ * Установка dev-python/omemo-dr-1.2.0 ...                                [ ok ]
+ * Установка dev-python/secretstorage-3.5.0 ...                           [ ok ]
+ * Установка app-text/libebook-0.1.4 [0.1.3-r4] ...                       [ ok ]
+ * Установка net-print/cups-2.4.19 ...                                    [ ok ]
+ * (155 из 206) HTTP client/server for asyncio
+ * Сборка dev-python/aiohttp-3.14.3-r1 ...                                [ ok ]
+ * (156 из 206) Provides access to the system keyring service
+ * Сборка dev-python/keyring-25.7.0 ...                                   [ ok ]
+ * (157 из 206) QR Code generator on top of PIL
+ * Сборка dev-python/qrcode-8.2 ...                                       [ ok ]
+ * (158 из 206) Утилиты для импорта текстовых документов формата PDF из любых источников данных
+ * Сборка dev-python/reportlab-4.5.1 ...                                  [ ok ]
+ * (159 из 206) Привязки Python для API CUPS
+ * Сборка dev-python/pycups-2.0.4 ...                                     [ ok ]
+ * (160 из 206) Interpreter for the PostScript language and PDF
+ * Сборка app-text/ghostscript-gpl-10.08.0 ...                            [ ok ]
+ * (161 из 206) Базовый комплект плагинов для GStreamer
+ * Сборка media-libs/gst-plugins-good-1.26.11 ...                         [ ok ]
+ * (162 из 206) Интерфейс на Python для фреймворка GStreamer
+ * Сборка dev-python/gst-python-1.26.11 ...                               [ ok ]
+ * (163 из 206) Виртуальный пакет API провайдера Secret Service от freedesktop.org
+ * Сборка virtual/secret-service-0-r2 ...                                 [ ok ]
+ * Установка dev-python/aiohttp-3.14.3-r1 [3.14.3] ...                    [ ok ]
+ * Установка dev-python/keyring-25.7.0 ...                                [ ok ]
+ * Установка dev-python/qrcode-8.2 ...                                    [ ok ]
+ * Установка dev-python/reportlab-4.5.1 ...                               [ ok ]
+ * Установка dev-python/pycups-2.0.4 ...                                  [ ok ]
+ * Установка app-text/ghostscript-gpl-10.08.0 [10.06.0-r2] ...            [ ok ]
+ * Установка media-libs/gst-plugins-good-1.26.11 ...                      [ ok ]
+ * Установка dev-python/gst-python-1.26.11 ...                            [ ok ]
+ * Установка virtual/secret-service-0-r2 [0-r1] ...                       [ ok ]
+ * (164 из 206) Library for reading vector images in Microsoft's Windows Metafile Format (WMF)
+ * Сборка media-libs/libwmf-0.2.15-r1 ...                                 [ ok ]
+ * (165 из 206) PNG image encoder/decoder plugin for GStreamer
+ * Сборка media-plugins/gst-plugins-libpng-1.26.11 ...                    [ ok ]
+ * (166 из 206) Library for rendering Postscript documents
+ * Сборка app-text/libspectre-0.2.12 ...                                  [ ok ]
+ * (167 из 206) The package management and distribution system for Gentoo
+ * Сборка sys-apps/portage-3.0.82.2 ...                                   [ ok ]
+ * Установка media-libs/libwmf-0.2.15-r1 [0.2.13-r2] ...                  [ ok ]
+ * Установка media-plugins/gst-plugins-libpng-1.26.11 ...                 [ ok ]
+ * Установка app-text/libspectre-0.2.12 ...                               [ ok ]
+ * Установка sys-apps/portage-3.0.82.2 [3.0.81.3] ...                     [ ok ]
+ * (168 из 206) Набор сценариев для администрирования систем, работающих на Gentoo
+ * Сборка app-portage/gentoolkit-0.8.1 ...                                [ ok ]
+ * (169 из 206) Библиотека Python для использования сетей Jabber/XMPP без блокировки
+ * Сборка dev-python/nbxmpp-7.4.0 ...                                     [ ok ]
+ * (170 из 206) Кросс-платформенный инструментарий разработки ПО
+ * Сборка dev-qt/qtbase-6.11.2-r2 ...                                     [ ok ]
+ * Установка app-portage/gentoolkit-0.8.1 [0.8.0] ...                     [ ok ]
+ * Установка dev-python/nbxmpp-7.4.0 [7.3.0] ...                          [ ok ]
+ * Установка dev-qt/qtbase-6.11.2-r2 [6.11.1] ...                         [ ok ]
+ * (171 из 206) SVG rendering library for the Qt6 framework
+ * Сборка dev-qt/qtsvg-6.11.2 ...                                         [ ok ]
+ * Установка dev-qt/qtsvg-6.11.2 [6.11.1] ...                             [ ok ]
+ * (172 из 206) Qt APIs and Tools for Graphics Pipelines
+ * Сборка dev-qt/qtshadertools-6.11.2 ...                                 [ ok ]
+ * Установка dev-qt/qtshadertools-6.11.2 [6.11.1] ...                     [ ok ]
+ * (173 из 206) Implementation of the Language Server Protocol for Qt
+ * Сборка dev-qt/qtlanguageserver-6.11.2 ...                              [ ok ]
+ * Установка dev-qt/qtlanguageserver-6.11.2 [6.11.1] ...                  [ ok ]
+ * (174 из 206) Bluetooth and NFC support library for the Qt6 framework
+ * Сборка dev-qt/qtconnectivity-6.11.2 ...                                [ ok ]
+ * (175 из 206) Плагины, обеспечивающие поддержку ввода и вывода дополнительных форматов изображений для фреймворка Qt
+ * Сборка dev-qt/qtimageformats-6.11.2 ...                                [ ok ]
+ * (176 из 206) Интернет-браузер от компании Google
+ * Сборка www-client/google-chrome-154.0.8037.57 ...                      [ ok ]
+ * (177 из 206) Qt Declarative (Quick 2)
+ * Сборка dev-qt/qtdeclarative-6.11.2-r1 ...                              [ ok ]
+ * Установка dev-qt/qtconnectivity-6.11.2 [6.11.1] ...                    [ ok ]
+ * Установка dev-qt/qtimageformats-6.11.2 [6.11.1] ...                    [ ok ]
+ * Установка dev-qt/qtdeclarative-6.11.2-r1 [6.11.1-r1] ...               [ ok ]
+ * Установка www-client/google-chrome-154.0.8037.57 ...                   [ ok ]
+ * (178 из 206) Library for developing printing features, split out of cups-filters
+ * Сборка net-print/libcupsfilters-2.1.1-r1 ...                           [ ok ]
+ * (179 из 206) Qt6 Configuration Tool (for DE/WM without Qt integration)
+ * Сборка gui-apps/qt6ct-0.11 ...                                         [ ok ]
+ * (180 из 206) BitTorrent-клиент, основанный на языке C++ и Qt
+ * Сборка net-p2p/qbittorrent-5.1.4-r1 ...                                [ ok ]
+ * (181 из 206) Qt module containing the unsupported Qt 5 APIs
+ * Сборка dev-qt/qt5compat-6.11.2 ...                                     [ ok ]
+ * Установка net-print/libcupsfilters-2.1.1-r1 ...                        [ ok ]
+ * Установка gui-apps/qt6ct-0.11 ...                                      [ ok ]
+ * Установка net-p2p/qbittorrent-5.1.4-r1 [5.1.4] ...                     [ ok ]
+ * Установка dev-qt/qt5compat-6.11.2 [6.11.1] ...                         [ ok ]
+ * (182 из 206) Framework providing assorted high-level user interface components
+ * Сборка kde-frameworks/kguiaddons-6.29.0-r1 ...                         [ ok ]
+ * Установка kde-frameworks/kguiaddons-6.29.0-r1 [6.27.0] ...             [ ok ]
+ * (183 из 206) Framework providing access to properties and features of the window manager
+ * Сборка kde-frameworks/kwindowsystem-6.29.0 ...                         [ ok ]
+ * Установка kde-frameworks/kwindowsystem-6.29.0 [6.27.0] ...             [ ok ]
+ * (184 из 206) Qt WebChannel
+ * Сборка dev-qt/qtwebchannel-6.11.2 ...                                  [ ok ]
+ * (185 из 206) Qt Tools Collection
+ * Сборка dev-qt/qttools-6.11.2 ...                                       [ ok ]
+ * (186 из 206) Physical position determination library for the Qt6 framework
+ * Сборка dev-qt/qtpositioning-6.11.2 ...                                 [ ok ]
+ * (187 из 206) Qt module for keyframe-based timeline construction
+ * Сборка dev-qt/qtquicktimeline-6.11.2 ...                               [ ok ]
+ * (188 из 206) Мультимедийная библиотека SDL
+ * Сборка media-libs/libsdl3-3.4.16 ...                                   [ ok ]
+ * (189 из 206) GTK XMPP Client
+ * Сборка net-im/gajim-2.6.0 ...                                          [ ok ]
+ * (190 из 206) ISO/IEC 23008-12:2017 HEIF file format decoder and encoder
+ * Сборка media-libs/libheif-1.23.5 ...                                   [ ok ]
+ * Установка dev-qt/qtwebchannel-6.11.2 [6.11.1] ...                      [ ok ]
+ * Установка dev-qt/qttools-6.11.2 [6.11.1] ...                           [ ok ]
+ * Установка dev-qt/qtpositioning-6.11.2 [6.11.1] ...                     [ ok ]
+ * Установка dev-qt/qtquicktimeline-6.11.2 [6.11.1] ...                   [ ok ]
+ * Установка media-libs/libsdl3-3.4.16 [3.4.14] ...                       [ ok ]
+ * Установка net-im/gajim-2.6.0 [2.4.6] ...                               [ ok ]
+ * Установка media-libs/libheif-1.23.5 [1.21.2] ...                       [ ok ]
+ * (191 из 206) Qt module and API for defining 3D content in Qt QuickTools
+ * Сборка dev-qt/qtquick3d-6.11.2 ...                                     [ ok ]
+ * (192 из 206) Library for rendering dynamic web content in Qt6 C++ and QML applications
+ * Сборка dev-qt/qtwebengine-6.11.2 ...                                   [ ok ]
+ * (193 из 206) Media player for the command line
+ * Сборка media-video/mpv-0.41.0-r2 ...                                   [ ok ]
+ * (194 из 206) Свободная реализация протокола удалённого рабочего стола (RDP)
+ * Сборка net-misc/freerdp-3.32.0 ...                                     [ ok ]
+ * (195 из 206) Графическая библиотека для быстрого создания изображений
+ * Сборка media-libs/gd-2.3.3-r4 ...                                      [ ok ]
+ * Установка dev-qt/qtquick3d-6.11.2 [6.11.1] ...                         [ ok ]
+ * Установка media-video/mpv-0.41.0-r2 ...                                [ ok ]
+ * Установка dev-qt/qtwebengine-6.11.2 [6.11.1] ...                       [ ok ]
+ * Установка net-misc/freerdp-3.32.0 [3.31.1_rc73] ...                    [ ok ]
+ * Установка media-libs/gd-2.3.3-r4 ...                                   [ ok ]
+ * (196 из 206) Multimedia (audio, video, radio, camera) library for the Qt6 framework
+ * Сборка dev-qt/qtmultimedia-6.11.2 ...                                  [ ok ]
+ * (197 из 206) Коллекция утилит и библиотек для различных форматов изображений
+ * Сборка media-gfx/imagemagick-7.1.2.32 ...                              [ ok ]
+ * (198 из 206) Версия 2 улучшенной библиотеки, призванной заменить такие библиотеки как libXpm
+ * Сборка media-libs/imlib2-1.12.6 ...                                    [ ok ]
+ * (199 из 206) Implementation of the codec specified in the JPEG-2000 Part-1 standard
+ * Сборка media-libs/jasper-4.2.4 ...                                     [ ok ]
+ * (200 из 206) Отличный графический фронтенд для Mplayer, написанный на Qt
+ * Сборка media-video/smplayer-25.6.0_p20250903-r1 ...                    [ ok ]
+ * (201 из 206) Набор различных алгоритмов компьютерного зрения и примеров кода
+ * Сборка media-libs/opencv-4.12.0-r1 ...                                 [ ok ]
+ * Установка dev-qt/qtmultimedia-6.11.2 [6.11.1] ...                      [ ok ]
+ * Установка media-gfx/imagemagick-7.1.2.32 [7.1.2.18] ...                [ ok ]
+ * Установка media-libs/imlib2-1.12.6 ...                                 [ ok ]
+ * Установка media-libs/jasper-4.2.4 ...                                  [ ok ]
+ * Установка media-video/smplayer-25.6.0_p20250903-r1 ...                 [ ok ]
+ * Установка media-libs/opencv-4.12.0-r1 ...                              [ ok ]
+ * (202 из 206) Привязки Python для фреймворка Qt
+ * Сборка dev-python/pyqt6-6.11.0-r1 ...                                  [ ok ]
+ * (203 из 206) Полнофункциональный офисный пакет
+ * Сборка app-office/libreoffice-25.2.7.2-r1 ...                          [ ok ]
+ * (204 из 206) Растровый графический редактор
+ * Сборка media-gfx/gimp-3.2.4 ...                                        [ ok ]
+ * (205 из 206) Просмотрщик изображений на движке Qt
+ * Сборка media-gfx/nomacs-3.22.0 ...                                     [ ok ]
+ * Установка dev-python/pyqt6-6.11.0-r1 ...                               [ ok ]
+ * Установка media-gfx/gimp-3.2.4 ...                                     [ ok ]
+ * Установка media-gfx/nomacs-3.22.0 [3.21.1] ...                         [ ok ]
+ * Установка app-office/libreoffice-25.2.7.2-r1 ...                       [ ok ]
+ * (206 из 206) Набор Calculate утилит для установки, сборки и обновления системы
+ * Сборка sys-apps/calculate-utils-3.8.2.10 ...                           [ ok ]
+ * Установка sys-apps/calculate-utils-3.8.2.10 [3.8.2.7] ...              [ ok ]
+Очистка системы от ненужных пакетов
+ * Вычисление зависимостей ...
+ * Список удаляемых пакетов  
+ * Интерпретируемый интерактивный объектно-ориентированный язык программирования dev-lang/python-3.13.15
+ * Backport of PEP-784: adding Zstandard to the standard library dev-python/backports-zstd-1.6.0
+ * Утилиты, необходимые для сборки ПО sys-devel/binutils-2.46.1
+ * Набор компиляторов GCC, разработанный в рамках проекта GNU sys-devel/gcc-15.3.0
+
+Вы хотите удалить неиспользуемые пакеты (рекомендуется)? (Yes/No): yes
+ * Удаление (1 из 4) sys-devel/gcc-15.3.0 ...                             [ ok ]
+ * Удаление (2 из 4) sys-devel/binutils-2.46.1 ...                        [ ok ]
+ * Удаление (3 из 4) dev-python/backports-zstd-1.6.0 ...                  [ ok ]
+ * Удаление (4 из 4) dev-lang/python-3.13.15 ...                          [ ok ]
+Пересборка зависимых модулей
+ * Обновление сохранённых библиотек ...                                   [ ok ]
+ * Обновление конфигурационных файлов ...                                 [ ok ]
+ * Обновление системы завершено!
+calculate ~ # 
+
+---
+
+calculate ~ # emerge --sync
+>>> Syncing repository 'gentoo' into '/var/db/repos/gentoo'...
+Синхронизация репозиториев
+ * Проверка текущего сервера обновлений ...                               [ ok ]
+ * Проверка обновлений Gentoo ...                                         [ ok ]
+ * Синхронизация завершена
+Конфигурация системы
+ * Сервер обновлений http://mirror.mephi.ru/calculate
+ * Синхронизация репозиториев завершена!
+=== Sync completed for gentoo
+>>> Syncing repository 'calculate' into '/var/db/repos/calculate'...
+Синхронизация репозиториев
+ * Проверка текущего сервера обновлений ...                               [ ok ]
+ * Проверка обновлений Calculate ...                                      [ ok ]
+ * Синхронизация завершена
+Конфигурация системы
+ * Сервер обновлений http://mirror.mephi.ru/calculate
+ * Синхронизация репозиториев завершена!
+=== Sync completed for calculate
+>>> Syncing repository 'distros' into '/var/db/repos/distros'...
+Синхронизация репозиториев
+ * Проверка текущего сервера обновлений ...                               [ ok ]
+ * Проверка обновлений Distros ...                                        [ ok ]
+ * Синхронизация завершена
+Конфигурация системы
+ * Сервер обновлений http://mirror.mephi.ru/calculate
+ * Синхронизация репозиториев завершена!
+=== Sync completed for distros
+ * Copying old database to /var/cache/eix/previous.eix
+ * Running eix-update
+Reading Portage settings...
+Building database (/var/cache/eix/portage.eix)...
+[0] "gentoo" /var/db/repos/gentoo/ (cache: metadata-md5-or-flat)
+     Reading category 174|174 (100) Finished             
+[1] "custom" /var/calculate/repos/custom (cache: parse|ebuild*3.0.24#metadata-md5#metadata-flat#assign)
+     Reading category 174|174 (100) EMPTY!
+[2] "calculate" /var/db/repos/calculate (cache: parse|ebuild*3.0.24#metadata-md5#metadata-flat#assign)
+     Reading category 174|174 (100) Finished          
+[3] "distros" /var/db/repos/distros (cache: parse|ebuild*3.0.24#metadata-md5#metadata-flat#assign)
+     Reading category 174|174 (100) EMPTY!
+Applying masks...
+Calculating hash tables...
+Writing database file /var/cache/eix/portage.eix...
+Database contains 19483 packages in 174 categories
+
+ * IMPORTANT: 46 news items need reading for repository 'gentoo'.
+ * Use eselect news read to view new items.
+
+Action: sync for repo: gentoo, returned code = 0
+Action: sync for repo: calculate, returned code = 0
+Action: sync for repo: distros, returned code = 0
+
+
+
+---
+
+calculate ~ # sudo emerge --pretend --update --deep --newuse @world
+[04b86392df50e34e2418bcaeda690f14] Local copy of remote index is within TTL and will be used.
+
+These are the packages that would be merged, in order:
+
+Calculating dependencies ... done!
+Dependency resolution took 17.64 s (backtrack: 0/20).
+
+
+!!! Problems have been detected with your world file
+!!! Please run emaint --check world
+
+
+!!! Ebuilds for the following packages are either all
+!!! masked or don't exist:
+www-client/chromium
+
+!!! The following installed packages are masked:
+- www-client/chromium-151.0.7922.169-r1::gentoo (masked by: package.mask)
+/var/db/repos/gentoo/profiles/package.mask:
+# Sam James <sam@gentoo.org> (2026-09-24)
+# Increasingly challenging to maintain with increased release cadence,
+# upstream toolchain changes, and conflicts between trying to provide
+# a consistent experience for Gentoo users (avoiding bundled where possible)
+# vs. getting updates out in a timely manner.  Many unfixed vulnerabilities.
+#
+# Keeping it in ::gentoo isn't a matter of just supplying an updated ebuild,
+# but a commitment to keeping it up to date and finding a compromise between
+# users' expectations (like various USE flags & not forcing all bundled
+# components) and maintainability.
+#
+# Still supported packages include:
+#   www-client/google-chrome variants
+# Other chromium-based browsers:
+#   www-client/microsoft-edge
+#   www-client/opera
+#   www-client/vivaldi
+# qtwebengine-based browsers (uses chromium's engine):
+#   kde-apps/konqueror
+#   www-client/falkon
+#   www-client/qutebrowser
+# Other browsers:
+#   www-client/firefox and www-client/firefox-bin
+#   www-client/seamonkey
+#
+# Removal on 2026-10-24.  Bug #982204.
+
+For more information, see the MASKED PACKAGES section in the emerge
+man page or refer to the Gentoo Handbook.
+
+
+ * IMPORTANT: 46 news items need reading for repository 'gentoo'.
+ * Use eselect news read to view new items.
+
+calculate ~ # 
+
+
+
+---
+
+calculate ~ # emerge --update --deep --newuse @world
+[04b86392df50e34e2418bcaeda690f14] Local copy of remote index is within TTL and will be used.
+
+ * IMPORTANT: 46 news items need reading for repository 'gentoo'.
+ * Use eselect news read to view new items.
+
+Calculating dependencies ... done!
+Dependency resolution took 17.69 s (backtrack: 0/20).
+
+
+!!! Problems have been detected with your world file
+!!! Please run emaint --check world
+
+
+!!! Ebuilds for the following packages are either all
+!!! masked or don't exist:
+www-client/chromium
+
+!!! The following installed packages are masked:
+- www-client/chromium-151.0.7922.169-r1::gentoo (masked by: package.mask)
+/var/db/repos/gentoo/profiles/package.mask:
+# Sam James <sam@gentoo.org> (2026-09-24)
+# Increasingly challenging to maintain with increased release cadence,
+# upstream toolchain changes, and conflicts between trying to provide
+# a consistent experience for Gentoo users (avoiding bundled where possible)
+# vs. getting updates out in a timely manner.  Many unfixed vulnerabilities.
+#
+# Keeping it in ::gentoo isn't a matter of just supplying an updated ebuild,
+# but a commitment to keeping it up to date and finding a compromise between
+# users' expectations (like various USE flags & not forcing all bundled
+# components) and maintainability.
+#
+# Still supported packages include:
+#   www-client/google-chrome variants
+# Other chromium-based browsers:
+#   www-client/microsoft-edge
+#   www-client/opera
+#   www-client/vivaldi
+# qtwebengine-based browsers (uses chromium's engine):
+#   kde-apps/konqueror
+#   www-client/falkon
+#   www-client/qutebrowser
+# Other browsers:
+#   www-client/firefox and www-client/firefox-bin
+#   www-client/seamonkey
+#
+# Removal on 2026-10-24.  Bug #982204.
+
+For more information, see the MASKED PACKAGES section in the emerge
+man page or refer to the Gentoo Handbook.
+
+>>> Auto-cleaning packages...
+
+>>> No outdated packages were found on your system.
+calculate ~ # 
+
+
+
+---
+
+
+calculate ~ # emerge --depclean
+
+
+ * Always study the list of packages to be cleaned for any obvious
+ * mistakes. Packages that are part of the world set will always
+ * be kept.  They can be manually added to this set with
+ * `emerge --noreplace <atom>`.  Packages that are listed in
+ * package.provided (see portage(5)) will be removed by
+ * depclean, even if they are part of the world set.
+ * 
+ * As a safety measure, depclean will not remove any packages
+ * unless *all* required dependencies have been resolved.  As a
+ * consequence of this, it often becomes necessary to run 
+ * `emerge --update --newuse --deep @world` prior to depclean.
+
+Calculating dependencies ... done!
+>>> No packages selected for removal by depclean
+>>> To see reverse dependencies, use --verbose
+Packages installed:   1185
+Packages in world:    165
+Packages in system:   50
+Required packages:    1185
+Number removed:       0
+
+---
+
